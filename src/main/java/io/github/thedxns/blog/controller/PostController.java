@@ -3,6 +3,7 @@ package io.github.thedxns.blog.controller;
 import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,14 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping
+    @GetMapping(params = {"!sort", "!page", "!size"})
     public ResponseEntity<?> getPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getPosts(Pageable page) {
+        return ResponseEntity.ok(postService.getAllPosts(page));
     }
 
     @GetMapping("/{id}")

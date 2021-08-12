@@ -3,6 +3,7 @@ package io.github.thedxns.blog.logic;
 import io.github.thedxns.blog.model.Post;
 import io.github.thedxns.blog.model.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,10 @@ public class PostService {
 
     public List<Post> getAllPosts() {
         return postRepository.findAll();
+    }
+
+    public List<Post> getAllPosts(Pageable page) {
+        return postRepository.findAll(page).getContent();
     }
 
     public Post getPost(int id) {
