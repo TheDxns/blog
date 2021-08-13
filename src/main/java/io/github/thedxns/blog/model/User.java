@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @NotBlank(message = "The username must not be empty")
     @Column(name = "username")
@@ -40,11 +40,11 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
