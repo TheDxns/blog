@@ -52,4 +52,14 @@ public class PostController {
             return new ResponseEntity<String>("The post was not deleted. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePost(@PathVariable int id, @RequestBody @Valid Post post) {
+        if(!postService.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            postService.updatePost(id, post);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

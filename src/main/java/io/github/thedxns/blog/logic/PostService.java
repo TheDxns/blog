@@ -6,7 +6,6 @@ import io.github.thedxns.blog.model.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -38,6 +37,16 @@ public class PostService {
 
     public boolean deletePost(int id) {
         postRepository.deleteById(id);
+        return true;
+    }
+
+    public boolean existsById(int id) {
+        return postRepository.existsById(id);
+    }
+
+    public boolean updatePost(int id, Post post) {
+        post.updateFrom(post);
+        postRepository.save(post);
         return true;
     }
 }
