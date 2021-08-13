@@ -1,7 +1,8 @@
 package io.github.thedxns.blog.logic;
 
 import io.github.thedxns.blog.model.Post;
-import io.github.thedxns.blog.model.PostRepository;
+import io.github.thedxns.blog.model.repositories.PostRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class PostService {
 
     public boolean savePost(Post post) {
         postRepository.save(post);
+        return true;
+    }
+
+    public boolean deletePost(int id) {
+        postRepository.deleteById(id);
         return true;
     }
 }

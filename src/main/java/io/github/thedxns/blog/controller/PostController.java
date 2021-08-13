@@ -39,12 +39,17 @@ public class PostController {
     public ResponseEntity<?> savePost(@Valid @RequestBody Post post) {
         if (postService.savePost(post)) {
             return new ResponseEntity<String>("The post has been published.", HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<String>("The post has not been published. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable int id) {
+        if(postService.deletePost(id)) {
+            return new ResponseEntity<String>("The post has been deleted.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("The post was not deleted. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
