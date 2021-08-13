@@ -79,27 +79,28 @@ public class Post
         this.category = category;
     }
 
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(LocalDateTime updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
     public User getCreator() {
         return creator;
     }
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public void updateFrom(final Post source) {
+        content = source.content;
+        sneakPeak = source.sneakPeak;
+        category = source.category;
+        creator = source.creator;
+    }
+
+    @PrePersist
+    void prePersist() {
+        createdOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        updatedOn = LocalDateTime.now();
     }
 }
