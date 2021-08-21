@@ -8,9 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api/posts")
 public class PostController {
 
     private final PostService postService;
@@ -21,7 +22,7 @@ public class PostController {
     }
 
     @GetMapping(params = {"!sort", "!page", "!size"})
-    public ResponseEntity<?> getPosts() {
+    public ResponseEntity<List<Post>> getPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
 
