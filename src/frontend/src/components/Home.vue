@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
+    <v-row>
+      <v-col cols="12" class="pl-16">
         <h1>Blog</h1>
         <h3>Post list:</h3>
         <ul>
