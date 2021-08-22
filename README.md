@@ -1,3 +1,3 @@
-# Personal blog created with Spring Boot, Vue.js & Tailwind CSS
+# Personal blog created with Spring Boot, Vue.js & Vuetify
 #
 # Work in progress...
