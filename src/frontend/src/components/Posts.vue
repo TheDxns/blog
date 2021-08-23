@@ -1,12 +1,10 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" class="pl-16">
-        <h1>Blog</h1>
-        <h3>Post list:</h3>
+  <v-container class="mx-16">
+    <v-row class="mx-16">
+      <v-col cols="12" class="mx-16">
+        <h1 class="mt-10">Latest posts:</h1>
         <ul>
-            <li v-for="post in posts" :key="post.content">{{post.id}}, {{post.title}}, {{post.content}}</li>
-            <br />
+            <Post v-for="post in posts" :key="post.content" v-bind:post="post"/>
         </ul>
       </v-col>
     </v-row>
@@ -14,12 +12,17 @@
 </template>
 
 <script>
+import Post from '@/components/Post.vue'
+
   export default {
-    name: 'Home',
+    name: 'Posts',
     data() {
       return {
         posts: []
       }
+    },
+    components: {
+      Post
     },
     mounted() {
       fetch("/api/posts")
