@@ -10,9 +10,8 @@
         flat
         tile
     >
-      <v-card-title class="font-weight-light grey ">
-        <strong class="subheading">Get connected with us on social networks!</strong>
-
+      <v-card-title class="font-weight-light">
+        <strong class="subheading"></strong>
         <v-spacer></v-spacer>
 
         <v-btn
@@ -26,11 +25,12 @@
             {{ icon }}
           </v-icon>
         </v-btn>
+        <v-card-text class="py-0  white--text text-center">
+        © {{ new Date().getFullYear() }} — <strong>TheDxns</strong>
+        </v-card-text>
       </v-card-title>
 
-      <v-card-text class="py-2 white--text text-center">
-        {{ new Date().getFullYear() }} — <strong>TheDxns</strong>
-      </v-card-text>
+      
     </v-card>
   </v-footer>
 </template>
@@ -40,10 +40,8 @@ export default {
   name: 'Navbar',
   data: () => ({
     icons: [
-      'mdi-facebook',
-      'mdi-twitter',
+      'mdi-github',
       'mdi-linkedin',
-      'mdi-instagram',
     ],
   }),
 }
