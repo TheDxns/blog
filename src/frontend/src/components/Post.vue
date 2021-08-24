@@ -1,6 +1,6 @@
 <template>
       <v-card
-          class="mx-auto my-10"
+          class="mx-auto my-10 blue-grey darken-2"
           dark
           width="1000"
       >
@@ -17,12 +17,12 @@
             <v-list-item-avatar color="grey darken-3">
               <v-img
                   class="elevation-6"
-                  src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                  src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortWaved&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=Blue03&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Light"
               ></v-img>
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>Evan You</v-list-item-title>
+              <v-list-item-title>{{this.name}}</v-list-item-title>
             </v-list-item-content>
 
             <v-row
@@ -44,6 +44,11 @@
 <script>
 export default {
   name: 'Post',
-  props: ['post']
+  props: ['post'],
+  data() {
+      return {
+        name: "Denis Lukasczyk"
+      }
+    },
 }
 </script>
