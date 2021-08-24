@@ -2,7 +2,7 @@
   <v-container class="mx-16">
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
-        <h1 class="mt-10">Latest posts:</h1>
+        <h1 class="mt-6 ml-16">Latest posts:</h1>
         <ul>
             <Post v-for="post in posts" :key="post.content" v-bind:post="post"/>
         </ul>
@@ -33,3 +33,4 @@ import Post from '@/components/Post.vue'
     }
   }
 </script>
+lorem

@@ -3,6 +3,10 @@
     <v-main>
       <Navbar/>
       <router-view/>
+      <br />
+      <br />
+      <br />
+      <br />
       <Footer/>
     </v-main>
   </v-app>
