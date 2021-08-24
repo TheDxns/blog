@@ -19,8 +19,8 @@
         <v-btn href="/contact" text>
           <span class="mr-2 font-weight-light">Contact</span>
         </v-btn>
-        <v-btn href="https://github.com/TheDxns" target="_blank" text>
-          <span class="mr-2 font-weight-light">Github</span>
+        <v-btn href="https://github.com/TheDxns/blog" target="_blank" text>
+          <span class="mr-2 font-weight-light">Github repo</span>
         </v-btn>
       </div>
       <v-spacer></v-spacer>
