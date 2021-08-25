@@ -45,6 +45,7 @@ public class PostService {
     }
 
     public boolean updatePost(int id, Post post) {
+        post.setId(id);
         post.updateFrom(post);
         postRepository.save(post);
         return true;
