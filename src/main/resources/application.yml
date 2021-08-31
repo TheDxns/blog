@@ -6,3 +6,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+keycloak:
+  auth-server-url: 'http://localhost:8180/auth'
+  realm: 'Blog'
+  resource: 'blog-client'
+  public-client: true
