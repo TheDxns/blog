@@ -4,7 +4,12 @@
       <v-col cols="12" class="mx-16">
         <h1 class="mt-6 ml-16">Latest posts:</h1>
         <ul>
+          <v-card 
+          class="d-flex flex-wrap mx-16"
+          flat
+          tile>
             <Post v-for="post in posts" :key="post.content" v-bind:post="post"/>
+          </v-card>
         </ul>
       </v-col>
     </v-row>
@@ -25,7 +30,7 @@ import Post from '@/components/Post.vue'
       Post
     },
     mounted() {
-      fetch("/api/posts")
+      fetch("/api/posts?sort=id,desc")
           .then((response) => response.json())
           .then((data) => {
             this.posts = data;
