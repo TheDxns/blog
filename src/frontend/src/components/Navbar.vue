@@ -1,10 +1,12 @@
 <template>
   <nav>
     <v-toolbar dark extended app>
+      <a href="/" style="text-decoration: none;">
       <v-toolbar-title class="headline text-uppercase grey--text mt-10">
         <span class="font-weight-light">A Blog by </span>
         <span>TheDxns</span>
       </v-toolbar-title>
+      </a>
       <v-spacer></v-spacer>
       <div class="mt-16">
         <v-btn href="/" text>
