@@ -38,4 +38,3 @@ import Post from '@/components/Post.vue'
     }
   }
 </script>
-lorem
