@@ -2,6 +2,7 @@
       <v-card
       class="mx-auto mt-10"
       max-width="500"
+      min-width="350"
       outlined
       tile
     >
