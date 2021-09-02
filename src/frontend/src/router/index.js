@@ -41,9 +41,20 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "redactors" */ '../views/Contact.vue'),
+    component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
     meta: {
       title: "Contact"
+    }
+  },
+  {
+    path: '/new-post',
+    name: 'NewPost',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "new-post" */ '../views/NewPost.vue'),
+    meta: {
+      title: "Create a new post"
     }
   }
 ]
