@@ -31,6 +31,7 @@ public class PostService {
     }
 
     public boolean savePost(Post post) {
+        post.setSneakPeak(post.getContent());
         postRepository.save(post);
         return true;
     }
