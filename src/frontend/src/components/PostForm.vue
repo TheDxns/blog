@@ -1,29 +1,34 @@
 <template>
-  <v-form>
-    <v-text-field
-        v-model="postTitle"
-        :counter="10"
-        label="Title"
-        required
-    ></v-text-field>
-    <v-select
-        v-model="postCategory"
-        :categories="categories"
-        label="Category"
-        required
-    ></v-select>
-    <v-text-field
-        v-model="postContent"
-        :counter="10"
-        label="Content"
-        required
-    ></v-text-field>
-    <v-btn
-        color="warning"
-        @click="doPost"
-    >
-      Publish post
-    </v-btn>
+  <v-form 
+  class="mx-16 d-flex flex-column justify-center"
+  style="width:50%"
+  >
+      <v-text-field
+          v-model="postTitle"
+          :counter="30"
+          label="Title"
+          required
+      ></v-text-field>
+      <v-select
+          v-model="postCategory"
+          :items="categories"
+          label="Category"
+          required
+      ></v-select>
+      <v-textarea
+          v-model="postContent"
+          :counter="50"
+          label="Content"
+          required
+      ></v-textarea>
+      <v-btn
+          style="width:15%"
+          color="teal"
+          class="ma-2 white--text"
+          @click="doPost"
+      >
+        Publish post
+      </v-btn>
   </v-form>
 </template>
 <script>
