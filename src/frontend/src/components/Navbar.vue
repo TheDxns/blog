@@ -25,17 +25,18 @@
           <span class="mr-2 font-weight-light">Github repo</span>
         </v-btn>
       </div>
-      <v-spacer></v-spacer>
-      <v-btn href="#" text>
-        <span class="mr-2 font-weight-light">Sign up/Log in</span>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
+      <LoginForm/>
     </v-toolbar>
   </nav>
 </template>
 
 <script>
+import LoginForm from '@/components/LoginForm.vue'
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  components: {
+    LoginForm
+  }
 }
 </script>
