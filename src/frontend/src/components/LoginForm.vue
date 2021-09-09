@@ -79,10 +79,13 @@ export default {
         body: new URLSearchParams({
           client_id:'blog-client', username:this.email, password:this.password, grant_type:'password'
         }),
+        mode: 'cors',
         credentials: 'same-origin'
       }).then((response) => response.json())
           .then((responseData) => {
             alert(JSON.stringify(responseData))
+            document.cookie = "access_token=" + JSON.stringify(responseData.access_token) + "; expires=" + new Date(Date.now()+ 300000).toUTCString();
+            document.cookie = "refresh_token=" + JSON.stringify(responseData.refresh_token);
           })
     }
   }
