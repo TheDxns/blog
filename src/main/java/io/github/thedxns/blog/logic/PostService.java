@@ -27,7 +27,7 @@ public class PostService {
     }
 
     public Post getPost(int id) {
-        return postRepository.getById(id);
+        return postRepository.findById(id).get();
     }
 
     public boolean savePost(Post post) {
