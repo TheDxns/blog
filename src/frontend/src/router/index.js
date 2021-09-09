@@ -56,6 +56,17 @@ const routes = [
     meta: {
       title: "Create a new post"
     }
+  },
+  {
+    path: '/posts/*',
+    name: 'PostView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "new-post" */ '../views/PostView.vue'),
+    meta: {
+      title: "Show post"
+    }
   }
 ]
 

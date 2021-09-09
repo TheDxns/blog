@@ -20,6 +20,7 @@
         <v-btn
           text
           color="teal accent-4"
+          :href="'http://localhost:3000/posts/' + this.post.id"
         >
           Read post
         </v-btn>
