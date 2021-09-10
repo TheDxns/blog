@@ -31,6 +31,12 @@ public class Comment {
     public Comment() {
     }
 
+    public Comment(String content, Post post, User creator) {
+        this.content = content;
+        this.post = post;
+        this.creator = creator;
+    }
+
     public int getId() {
         return id;
     }
@@ -43,7 +49,7 @@ public class Comment {
         return content;
     }
 
-    public void setText(String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 
@@ -61,6 +67,12 @@ public class Comment {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public void updateFrom(final Comment source) {
+        content = source.content;
+        post = source.post;
+        creator = source.creator;
     }
 
     @PrePersist
