@@ -40,6 +40,15 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, String name, String surname, String email, boolean subscriberStatus) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.subscriberStatus = subscriberStatus;
+    }
+
     public int getId() {
         return id;
     }
