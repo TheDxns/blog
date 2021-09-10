@@ -20,7 +20,7 @@
 import Post from '@/components/Post.vue'
 
   export default {
-    name: 'Posts',
+    name: 'PostSection',
     data() {
       return {
         posts: []
