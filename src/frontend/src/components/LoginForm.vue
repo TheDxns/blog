@@ -39,6 +39,11 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col>
+                Forgot password?
+              </v-col>
+            </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
