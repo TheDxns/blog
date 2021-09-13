@@ -24,7 +24,7 @@ import Comment from '@/components/Comment.vue'
       Comment
     },
     mounted() {
-      fetch("/api/comments?sort=id,desc")
+      fetch("/api/comments")
           .then((response) => response.json())
           .then((data) => {
             this.comments = data;
