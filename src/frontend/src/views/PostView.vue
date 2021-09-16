@@ -11,6 +11,8 @@
           <h3 class="mt-16 mx-16">{{post.content}}</h3>
       </v-col>
     </v-row>
+    <br />
+    <br />
     <CommentSection/>
   </v-container>
 </template>
