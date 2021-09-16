@@ -31,10 +31,9 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String content, Post post, User creator) {
+    public Comment(String content, Post post) {
         this.content = content;
         this.post = post;
-        this.creator = creator;
     }
 
     public int getId() {
