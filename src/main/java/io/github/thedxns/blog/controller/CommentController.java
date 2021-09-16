@@ -47,8 +47,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<?> saveComment(@RequestBody CommentContent comment) {
-        User testUser = new User("testuser", "test1234", "Test", "User", "test@gmail.com", false);
-        if (commentService.saveComment(new Comment(comment.getText(), postService.getPost(comment.getPostId()), testUser))) {
+        if (commentService.saveComment(new Comment(comment.getText(), postService.getPost(comment.getPostId())))) {
             return new ResponseEntity<String>("The comment has been published.", HttpStatus.OK);
         } else {
             return new ResponseEntity<String>("The comment has not been published. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
