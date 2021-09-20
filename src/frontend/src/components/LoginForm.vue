@@ -89,8 +89,9 @@ export default {
       }).then((response) => response.json())
           .then((responseData) => {
             alert(JSON.stringify(responseData))
+            /*
             document.cookie = "access_token=" + JSON.stringify(responseData.access_token) + "; expires=" + new Date(Date.now()+ 300000).toUTCString();
-            document.cookie = "refresh_token=" + JSON.stringify(responseData.refresh_token);
+            document.cookie = "refresh_token=" + JSON.stringify(responseData.refresh_token);*/
           })
     }
   }

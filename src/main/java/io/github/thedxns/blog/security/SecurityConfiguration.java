@@ -38,10 +38,16 @@ class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-            .antMatchers("/**").permitAll()
-            .antMatchers(HttpMethod.POST, "/api/comments/**").permitAll();
+            .antMatchers(HttpMethod.GET, "/comments").permitAll()
+            .antMatchers(HttpMethod.GET, "/posts").permitAll()
+            .antMatchers(HttpMethod.POST, "/comments").permitAll()
+            .antMatchers(HttpMethod.POST, "/posts").permitAll()
+            .anyRequest()
+            .permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }
