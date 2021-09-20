@@ -1,6 +1,7 @@
 <template>
-    <v-card>
-      #{{comment.id}} - {{comment.content}}
+    <v-card class="px-5 py-3">
+      <h3>{{author}} - {{dateCreated}}</h3>
+      {{comment.content}} (ID: {{comment.id}})
       </v-card>
 </template>
 
@@ -10,7 +11,9 @@ export default {
   props: ['comment'],
   data() {
       return {
-        name: ""
+        name: "",
+        author: "Denis Lukasczyk",
+        dateCreated: "20.09.2021"
       }
     },
 }

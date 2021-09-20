@@ -6,8 +6,14 @@
       offset-sm="3"
       class="rounded-lg blue-grey darken-4 white--text"
     >
-      <h3>Comment section</h3>
-        <Comment v-for="comment in comments" :key="comment.content" v-bind:comment="comment"/>
+      <h3 class="font-weight-light">Comments:</h3>
+        <v-row  v-for="comment in comments" :key="comment.content" class="mt-2">
+          <v-col cols=12>
+            <Comment v-bind:comment="comment"/>
+            <p class="px-4 font-weight-light caption">Like &ensp; Reply</p>
+          </v-col>
+        </v-row>
+
     </v-col>
   </v-row>
 </template>
