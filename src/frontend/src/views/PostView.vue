@@ -2,9 +2,29 @@
   <v-container class="mx-16">
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
-        <a href="http://localhost:3000/" class="mt-6 mx-16">Return to home</a>
-          <h2 class="mt-6 mx-16 red--text">{{dateCreated}} - {{post.title}} (ID: {{post.id}})</h2>
+          <h1 class="mt-6 mx-16 ">{{post.title}} (ID: {{post.id}})</h1>
+          <v-chip
+          link
+          class="ma-2 ml-16"
+          color="white"
+          >
+            <v-avatar left>
+              <img
+                  :src=creator[0].avatarUrl
+                  alt=""
+              >
+            </v-avatar>
+            {{creator[0].firstname}} {{creator[0].surname}}
+          </v-chip>
+          <v-chip
+          label
+          class=""
+          color="white"
+          >
+                Published on 20.09.2021, 10:31
+          </v-chip>
       </v-col>
+      
     </v-row>
     <v-row class="mx-16">
       <v-col cols="9" class="mx-16">
@@ -34,7 +54,15 @@ export default {
     data() {
       return {
         post: null,
-        dateCreated: "20.09.2021"
+        dateCreated: "20.09.2021",
+        creator: [
+          {
+            id: 1,
+            firstname: "Sam",
+            surname: "Smith",
+            avatarUrl: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+          }
+        ]
       }
     },
     methods: {
