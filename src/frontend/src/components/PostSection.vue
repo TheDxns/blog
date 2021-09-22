@@ -2,7 +2,7 @@
   <v-container class="mx-16">
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
-        <h1 class="mt-6 ml-16">Latest posts:</h1>
+        <h1 class="mt-6 ml-16 font-weight-light">Latest posts:</h1>
         <ul>
           <v-card 
           class="d-flex flex-wrap mx-16"
