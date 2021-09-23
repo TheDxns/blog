@@ -2,13 +2,13 @@
   <nav>
     <v-toolbar dark extended app>
       <a href="/" style="text-decoration: none;">
-      <v-toolbar-title class="headline text-uppercase grey--text mt-10">
+      <v-toolbar-title class="headline text-uppercase grey--text mt-10 px-5">
         <span class="font-weight-light">A Blog by </span>
         <span>TheDxns</span>
       </v-toolbar-title>
       </a>
       <v-spacer></v-spacer>
-      <div class="mt-16">
+      <div class="mt-16 pr-5">
         <v-btn href="/" text>
           <span class="mr-2 font-weight-light">Home</span>
         </v-btn>
@@ -25,18 +25,28 @@
           <span class="mr-2 font-weight-light">Github repo</span>
         </v-btn>
       </div>
-      <LoginForm/>
+      <v-row justify="center">
+        <v-btn
+                href="/login"
+                v-bind="attrs"
+                v-on="on"
+                text
+            >
+                <span class="mr-2 font-weight-light">Sign up/Log in</span>
+                <v-icon>mdi-account</v-icon>
+            </v-btn>
+      </v-row>
     </v-toolbar>
   </nav>
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm.vue'
-
 export default {
   name: 'Navbar',
-  components: {
-    LoginForm
-  }
+  data() {
+      return {
+        loggedInUser: null
+      }
+    }
 }
 </script>

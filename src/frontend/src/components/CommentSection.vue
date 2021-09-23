@@ -4,13 +4,14 @@
       cols="12"
       sm="6"
       offset-sm="3"
-      class="rounded-lg blue-grey darken-4 white--text"
+      class="rounded-lg"
     >
-      <h3 class="font-weight-light">Comments:</h3>
-        <v-row  v-for="comment in comments" :key="comment.content" class="mt-2">
-          <v-col cols=12>
+      <hr />
+      <h3 class="font-weight-light mt-5">Comments:</h3>
+        <v-row v-for="comment in comments" :key="comment.content" class="mt-2">
+          <v-col cols=7 >
             <Comment v-bind:comment="comment"/>
-            <p class="px-4 font-weight-light caption">Like &ensp; Reply</p>
+            <p class="px-5 font-weight-light blue-grey--text caption">Like &ensp; Reply</p>
           </v-col>
         </v-row>
 
