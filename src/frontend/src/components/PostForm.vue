@@ -46,9 +46,17 @@ export default {
     }
   },
   methods: {
+    getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }, 
     doPost() {
       fetch("/api/posts", {
         method: 'post',
+        headers: {
+          'Authorization': 'bearer ' + this.getCookie("KEYCLOAK_IDENTITY") + ''
+        },
         data:{title:this.postTitle, content:this.postContent, category:this.postCategory}
       }).then((response) => {
         console.log(response.data);

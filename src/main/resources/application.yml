@@ -6,6 +6,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+server:
+  port: 8080
       
 keycloak:
   auth-server-url: 'http://localhost:8180/auth'
