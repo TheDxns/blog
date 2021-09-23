@@ -9,10 +9,7 @@
   </v-container>
 </template>
 
-
-
 <script>
-
 import PostForm from '@/components/PostForm.vue'
 
 export default {

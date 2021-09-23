@@ -2,7 +2,7 @@
   <v-container class="mx-16">
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
-          <h1 class="mt-6 mx-16 ">{{post.title}} (ID: {{post.id}})</h1>
+          <h1 class="mt-6 mx-16 font-weight-light">{{post.title}} (ID: {{post.id}})</h1>
           <v-chip
           link
           class="ma-2 ml-16"
@@ -38,10 +38,8 @@
           </h3>
       </v-col>
     </v-row>
-    
   </v-container>
 </template>
-
 
 <script>
 import CommentSection from '@/components/CommentSection.vue'

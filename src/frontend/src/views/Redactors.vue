@@ -12,6 +12,7 @@
     </v-row>
   </v-container>
 </template>
+
 <script>
 import Redactor from '@/components/Redactor.vue'
 
