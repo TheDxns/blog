@@ -16,58 +16,66 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: "About"
+      title: "About",
+      isAuthenticated: false
     }
   },
   {
     path: '/redactors',
     name: 'Redactors',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "redactors" */ '../views/Redactors.vue'),
     meta: {
-      title: "Redactors"
+      title: "Redactors",
+      isAuthenticated: false
     }
   },
   {
     path: '/contact',
     name: 'Contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
     meta: {
-      title: "Contact"
+      title: "Contact",
+      isAuthenticated: false
     }
   },
   {
     path: '/new-post',
     name: 'NewPost',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "new-post" */ '../views/NewPost.vue'),
     meta: {
-      title: "Create a new post"
+      title: "Create a new post",
+      isAuthenticated: true
     }
   },
   {
     path: '/posts/*',
     name: 'PostView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () => import(/* webpackChunkName: "new-post" */ '../views/PostView.vue'),
     meta: {
-      title: "Show post"
+      title: "Show post",
+      isAuthenticated: false
     }
-  }
+  },
+  {
+    path: '/unauthorized',
+    name: 'Unauthorized',
+    meta: {
+      isAuthenticated: false
+    },
+    component: () => import('../views/Unauthorized.vue')
+  },
+  {
+    path: '/login',
+    name: 'Log in',
+    meta: {
+      isAuthenticated: true
+    },
+    component: () => import('../views/Home.vue')
+  },
+
 ]
 
 const router = new VueRouter({
@@ -77,8 +85,29 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
-});
+  if (to.meta.isAuthenticated) {
+    if (!Vue.$keycloak.authenticated) {
+      // The page is protected and the user is not authenticated. Force a login.
+      Vue.$keycloak.login({ redirectUri: "http://localhost:3000/" + to.path })
+    } else if (Vue.$keycloak.hasResourceRole('user')) {
+      // The user was authenticated, and has the app role
+      Vue.$keycloak.updateToken(70)
+        .then(() => {
+          next()
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } else {
+      // The user was authenticated, but did not have the correct role
+      // Redirect to an error page
+      next({ name: 'Unauthorized' })
+    }
+  } else {
+    // This page did not require authentication
+    document.title = to.meta.title;
+    next()
+  }
+})
 
 export default router
