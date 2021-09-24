@@ -8,6 +8,9 @@
     >
       <hr />
       <h3 class="font-weight-light mt-5">Comments:</h3>
+      <h5 class="mt-10" v-if="noComments()">
+              No one has commented yet.
+      </h5>
         <v-row v-for="comment in comments" :key="comment.content" class="mt-2">
           <v-col cols=7 >
             <Comment v-bind:comment="comment"/>
@@ -36,6 +39,13 @@ import Comment from '@/components/Comment.vue'
       getPostId() {
         let splitted = window.location.href.split('/');
         return splitted[splitted.length-1];
+      },
+      noComments() {
+        if(this.comments.length == 0) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
     mounted() {
