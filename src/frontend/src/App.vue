@@ -1,13 +1,25 @@
 <template>
   <v-app>
     <v-main>
-      <Navbar/>
-      <router-view/>
-      <br />
-      <br />
-      <br />
-      <br />
-      <Footer/>
+      <v-row>
+        <v-col>
+          <Navbar/>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=2>
+        </v-col>
+        <v-col cols=8>
+          <router-view/>
+        </v-col>
+        <v-col cols=2>
+        </v-col>
+      </v-row>
+      <v-row class="mt-16 mb-16">
+      </v-row>
+      <v-row class="mt-16">
+          <Footer/>
+      </v-row>
     </v-main>
   </v-app>
 </template>
