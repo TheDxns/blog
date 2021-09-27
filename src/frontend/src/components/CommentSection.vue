@@ -2,11 +2,11 @@
     <v-row>
     <v-col
       cols="12"
-      sm="6"
-      offset-sm="3"
+      sm="8"
+      offset-sm="2"
       class="rounded-lg"
     >
-      <hr />
+      <v-divider></v-divider>
       <h3 class="font-weight-light mt-5">Comments:</h3>
       <h5 class="mt-10" v-if="noComments()">
               No one has commented yet.
