@@ -1,7 +1,5 @@
 <template>
-  <v-container class="mx-16">
-    <v-row class="mx-16">
-      <v-col cols="12" class="mx-16">
+  <v-container>
         <h1 class="mt-6 ml-16 font-weight-light">Latest posts:</h1>
         <ul>
           <v-card 
@@ -11,8 +9,6 @@
             <Post v-for="post in posts" :key="post.content" v-bind:post="post"/>
           </v-card>
         </ul>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 

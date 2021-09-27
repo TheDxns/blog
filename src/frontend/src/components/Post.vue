@@ -1,14 +1,16 @@
 <template>
       <v-card
-      class="mx-auto mt-10"
+      class="mx-auto mt-10 mb-5 d-flex flex-column"
       max-width="500"
       min-width="500"
-      min-height="250"
+      min-height="200"
+      max-height="400"
       outlined
       tile
     >
       <v-card-text class="font-weight-light">
         <v-chip
+        link
         color="white"
         >
             <v-avatar left>
@@ -26,20 +28,21 @@
           >
                 20.09.2021, 10:31
           </v-chip>
-        <p class="text-h4 text--primary mt-2 mx-2">
+        <p class="text-h4 text--primary mt-auto mx-2">
           {{ this.post.title }}
         </p>
         <p>{{ this.post.creator }}</p>
-        <div class="text--primary mx-2">
+        <div class="text--primary mx-2 mt-auto">
           {{ this.post.sneakPeak }}
         </div>
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions class="mt-auto">
         <v-btn
           text
           color="blue-grey accent-4"
           :href="'http://localhost:3000/posts/' + this.post.id"
-          class="mt-16  mx-2"
+          class="mx-2"
+          
         >
           Read post
         </v-btn>

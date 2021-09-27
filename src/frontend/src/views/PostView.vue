@@ -27,7 +27,7 @@
       
     </v-row>
     <v-row class="mx-16">
-      <v-col cols="9" class="mx-16">
+      <v-col cols="12" class="mx-16">
           <h3 class="mt-5 mx-16">{{post.content}}</h3>
       </v-col>
     </v-row>
