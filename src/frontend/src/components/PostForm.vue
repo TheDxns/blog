@@ -55,12 +55,17 @@ export default {
       fetch("/api/posts", {
         method: 'post',
         headers: {
-          'Authorization': 'bearer ' + this.getCookie("KEYCLOAK_IDENTITY") + ''
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        data:{title:this.postTitle, content:this.postContent, category:this.postCategory}
-      }).then((response) => {
-        console.log(response.data);
-      })
+        body:JSON.stringify({title:this.postTitle, content:this.postContent, category:this.postCategory})
+      }).then(response => response.text())
+        .then((response) => {
+            console.log(response);
+            window.alert(response);
+            document.location.replace("/");
+        })
+        .catch(err => console.log(err));
     }
   },
 }
