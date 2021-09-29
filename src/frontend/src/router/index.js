@@ -68,13 +68,13 @@ const routes = [
     component: () => import('../views/Unauthorized.vue')
   },
   {
-    path: '/login',
-    name: 'Log in',
+    path: '/authorized',
+    name: 'Home',
     meta: {
       isAuthenticated: true
     },
     component: () => import('../views/Home.vue')
-  },
+  }
 
 ]
 
