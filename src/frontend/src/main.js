@@ -8,16 +8,19 @@ Vue.config.productionTip = false
 Vue.use(authentication)
 
 Vue.$keycloak
-  .init({ checkLoginIframe: false })
+  .init({ onLoad: 'check-sso', checkLoginIframe: false })
   .then(() => {
-    let userInfo = Vue.$keycloak.loadUserInfo();
+    Vue.$keycloak.loadUserInfo().then(function(data){
+      window.userInfo = data.preferred_username;
+    }); 
+    
     new Vue({
       vuetify,
       router,
       render: h => h(App, 
         {
           props: {
-            username: userInfo
+            
           }
         })
     }).$mount('#app')
