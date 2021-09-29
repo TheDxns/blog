@@ -6,7 +6,6 @@ import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticatio
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
@@ -41,13 +40,8 @@ class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/comments").permitAll()
-            .antMatchers(HttpMethod.GET, "/posts").permitAll()
-            .antMatchers(HttpMethod.POST, "/comments").permitAll()
-            .antMatchers(HttpMethod.POST, "/posts").permitAll()
             .anyRequest()
             .permitAll();
         http.csrf().disable();
-        http.headers().frameOptions().disable();
     }
 }

@@ -27,7 +27,7 @@
       </div>
       <v-row justify="center">
         <v-btn
-                href="/login"
+                href="/authorized"
                 v-bind="attrs"
                 v-on="on"
                 text
@@ -35,14 +35,19 @@
                 <span class="mr-2 font-weight-light">Sign up/Log in</span>
                 <v-icon>mdi-account</v-icon>
             </v-btn>
+            <UserMenu />
       </v-row>
     </v-toolbar>
   </nav>
 </template>
-
 <script>
+import UserMenu from '@/components/UserMenu.vue'
+
 export default {
   name: 'Navbar',
+  components: {
+    UserMenu
+  },
   data() {
       return {
         loggedInUser: null

@@ -1,10 +1,10 @@
 <template>
-  <v-container class="mx-16">
+  <v-container>
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
         <h1 class="mt-6 ml-16 font-weight-light">Redactors:</h1>
         <v-row  v-for="redactor in redactors" :key="redactor.id" class="mt-2 mx-16">
-          <v-col class="mt-2 mx-16" cols=12>
+          <v-col class="mt-2 mx-16" cols=8>
             <Redactor v-bind:redactor="redactor"/>
           </v-col>
         </v-row>

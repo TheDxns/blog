@@ -46,13 +46,26 @@ export default {
     }
   },
   methods: {
+    getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }, 
     doPost() {
       fetch("/api/posts", {
         method: 'post',
-        data:{title:this.postTitle, content:this.postContent, category:this.postCategory}
-      }).then((response) => {
-        console.log(response.data);
-      })
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({title:this.postTitle, content:this.postContent, category:this.postCategory})
+      }).then(response => response.text())
+        .then((response) => {
+            console.log(response);
+            window.alert(response);
+            document.location.replace("/");
+        })
+        .catch(err => console.log(err));
     }
   },
 }

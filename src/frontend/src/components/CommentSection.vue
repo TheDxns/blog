@@ -2,12 +2,15 @@
     <v-row>
     <v-col
       cols="12"
-      sm="6"
-      offset-sm="3"
+      sm="8"
+      offset-sm="2"
       class="rounded-lg"
     >
-      <hr />
+      <v-divider></v-divider>
       <h3 class="font-weight-light mt-5">Comments:</h3>
+      <h5 class="mt-10" v-if="noComments()">
+              No one has commented yet.
+      </h5>
         <v-row v-for="comment in comments" :key="comment.content" class="mt-2">
           <v-col cols=7 >
             <Comment v-bind:comment="comment"/>
@@ -36,6 +39,13 @@ import Comment from '@/components/Comment.vue'
       getPostId() {
         let splitted = window.location.href.split('/');
         return splitted[splitted.length-1];
+      },
+      noComments() {
+        if(this.comments.length == 0) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
     mounted() {
