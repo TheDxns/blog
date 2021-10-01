@@ -1,8 +1,8 @@
 <template>
       <v-card
-      class="mx-auto mt-10 mb-5 d-flex flex-column"
-      max-width="500"
-      min-width="500"
+      class="mx-auto mt-5 mb-5 d-flex flex-column"
+      max-width="440"
+      min-width="440"
       min-height="200"
       max-height="400"
       outlined
@@ -28,7 +28,7 @@
           >
                 20.09.2021, 10:31
           </v-chip>
-        <p class="text-h4 text--primary mt-auto mx-2">
+        <p class="text-h5 text--primary mt-auto mx-2">
           {{ this.post.title }}
         </p>
         <p>{{ this.post.creator }}</p>
