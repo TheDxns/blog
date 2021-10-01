@@ -6,16 +6,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
-server:
-  port: 8080
       
 keycloak:
   realm: 'Blog'
   auth-server-url: 'http://localhost:8180/auth'
   ssl-required: external
   resource: 'blog-api'
-  credentials:
-    secret: 34d7bb89-2c05-4d41-ad8c-adfeb2e46989
   use-resource-role-mappings: true
   bearer-only: true
