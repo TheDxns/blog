@@ -7,6 +7,7 @@
       >
         <template v-slot:activator="{ on }">
           <v-btn
+            class="mr-5 mt-5"
             icon
             x-large
             v-on="on"
@@ -50,6 +51,7 @@
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
+                
                 @click="logOut()"
                 depressed
                 rounded

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-toolbar dark extended app>
+    <v-toolbar dark extended>
       <a href="/" style="text-decoration: none;">
       <v-toolbar-title class="headline text-uppercase grey--text mt-10 px-5">
         <span class="font-weight-light">A Blog by </span>
@@ -25,17 +25,17 @@
           <span class="mr-2 font-weight-light">Github repo</span>
         </v-btn>
       </div>
-      <v-row justify="center">
+      <v-row justify="end">
         <v-btn
+                v-if="anonymous()"
                 href="/authorized"
-                v-bind="attrs"
-                v-on="on"
+                class="mt-5"
                 text
             >
                 <span class="mr-2 font-weight-light">Sign up/Log in</span>
                 <v-icon>mdi-account</v-icon>
-            </v-btn>
-            <UserMenu />
+         </v-btn>
+        <UserMenu v-else />
       </v-row>
     </v-toolbar>
   </nav>
@@ -51,6 +51,11 @@ export default {
   data() {
       return {
         loggedInUser: null
+      }
+    },
+    methods: {
+      anonymous() {
+        return false;
       }
     }
 }
