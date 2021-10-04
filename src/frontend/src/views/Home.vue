@@ -15,10 +15,10 @@
           <v-row class="mt-5">
             <v-col
             cols:12>
-              <a href="/">Dolor proident ullamco laborum aliquip sint laborum</a><br />
-              <a href="/">Et Lorem anim ea laborum Lorem Lorem</a><br />
-              <a href="/">Et fugiat eu ad laborum excepteur eu est sint voluptate</a><br />
-              <a href="/">A new lorem ipsum post</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">1) Dolor proident ullamco laborum aliquip sint laborum</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">2) Et Lorem anim ea laborum Lorem Lorem</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">3) Et fugiat eu ad laborum excepteur eu est sint voluptate</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">4) A new lorem ipsum post</a><br />
             </v-col>
           </v-row>
           <v-row>
@@ -30,10 +30,10 @@
           <v-row class="mt-5">
             <v-col
             cols:12>
-              <a href="/">Dolor proident ullamco laborum aliquip sint laborum</a><br />
-              <a href="/">Et Lorem anim ea laborum Lorem Lorem</a><br />
-              <a href="/">Et fugiat eu ad laborum excepteur eu est sint voluptate</a><br />
-              <a href="/">A new lorem ipsum post</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">1) Dolor proident ullamco laborum aliquip sint laborum</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">2) Et Lorem anim ea laborum Lorem Lorem</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">3) Et fugiat eu ad laborum excepteur eu est sint voluptate</a><br />
+              <a style="text-decoration:none;" class="blue-grey--text" href="/">4) A new lorem ipsum post</a><br />
             </v-col>
           </v-row>
       </v-col>
