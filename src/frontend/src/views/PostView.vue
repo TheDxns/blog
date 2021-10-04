@@ -32,7 +32,12 @@
       </v-col>
     </v-row>
     <v-row class="mx-16">
-      <v-col cols="12" class="mt-16">
+      <v-col cols="12" class="ml-16 mt-10">
+         <v-icon class="ml-16">mdi-thumb-up</v-icon> (34)&emsp;<v-icon>mdi-thumb-down</v-icon> (7)
+      </v-col>
+    </v-row>
+    <v-row class="mx-16">
+      <v-col cols="12" class="mt-5">
           <h3 class="mt-16">
             <CommentSection/>
           </h3>
