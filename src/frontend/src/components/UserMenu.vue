@@ -13,7 +13,7 @@
             v-on="on"
           >
             <v-avatar
-              color="grey"
+              color="blue-grey"
               size="48"
             >
               <span class="white--text text-h5">{{ user.initials }}</span>
@@ -24,11 +24,11 @@
           <v-list-item-content class="justify-center">
             <div class="mx-auto text-center">
               <v-avatar
-                color="grey"
+                color="blue-grey"
               >
                 <span class="white--text text-h5">{{ user.initials }}</span>
               </v-avatar>
-              <h3>{{ user.username }}</h3>
+              <h3 class="mt-2">{{ user.username }}</h3>
               <p class="text-caption mt-1">
                 {{ user.email }}
               </p>
