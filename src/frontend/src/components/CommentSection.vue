@@ -14,11 +14,37 @@
         <v-row v-for="comment in comments" :key="comment.content" class="mt-2">
           <v-col cols=7 >
             <Comment v-bind:comment="comment"/>
-            <p class="px-5 font-weight-light blue-grey--text caption">Like &ensp; Reply</p>
+              <p class="font-weight-light blue-grey--text caption"><v-btn
+              x-small
+              class="ml-5"
+              text>
+              <v-icon>mdi-thumb-up</v-icon> (34)
+              </v-btn>
+              <v-btn
+              x-small
+              text>
+              <v-icon>mdi-thumb-down</v-icon> (7)</v-btn> &ensp; Reply</p>
           </v-col>
         </v-row>
-
-    </v-col>
+        <v-row>
+          <v-col cols=5 >
+            <v-divider class="mt-16"></v-divider>
+            <v-textarea
+              :counter="50"
+              label="Add a new comment"
+              
+            ></v-textarea>
+            <v-btn
+            color="black white--text"
+            small
+            class="mr-4 mb-16"
+            @click="submit"
+            >
+            Post comment
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
   </v-row>
 </template>
 

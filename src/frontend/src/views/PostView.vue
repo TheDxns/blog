@@ -31,9 +31,17 @@
           <h3 class="mt-5 mx-16">{{post.content}}</h3>
       </v-col>
     </v-row>
-    <v-row class="mx-16">
+    <v-row class="ml-16">
       <v-col cols="12" class="ml-16 mt-10">
-         <v-icon class="ml-16">mdi-thumb-up</v-icon> (34)&emsp;<v-icon>mdi-thumb-down</v-icon> (7)
+        <v-btn
+        class="ml-12"
+        text>
+        <v-icon>mdi-thumb-up</v-icon> (34)
+        </v-btn>
+        <v-btn
+        text>
+        <v-icon>mdi-thumb-down</v-icon> (7)
+        </v-btn>
       </v-col>
     </v-row>
     <v-row class="mx-16">

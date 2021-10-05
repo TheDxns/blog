@@ -24,7 +24,7 @@
           <v-row>
             <v-col
             cols:12>
-              <h1 class="mt-10 font-weight-light">Top rated:</h1>
+              <h1 class="mt-10 font-weight-light">Top rated posts:</h1>
             </v-col>
           </v-row>
           <v-row class="mt-5">

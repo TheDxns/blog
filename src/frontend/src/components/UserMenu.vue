@@ -43,6 +43,7 @@
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
+                href="/profile-settings"
                 depressed
                 rounded
                 text
