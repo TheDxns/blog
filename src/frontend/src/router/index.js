@@ -74,6 +74,15 @@ const routes = [
       isAuthenticated: true
     },
     component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/profile-settings',
+    name: 'ProfileSettings',
+    component: () => import(/* webpackChunkName: "new-post" */ '../views/ProfileSettings.vue'),
+    meta: {
+      title: "Profile settings",
+      isAuthenticated: true
+    }
   }
 
 ]
