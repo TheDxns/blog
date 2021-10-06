@@ -15,8 +15,20 @@
             <v-avatar
               color="blue-grey"
               size="48"
+              v-if="!dataLoading"
             >
-              <span class="white--text text-h5">{{ user.initials }}</span>
+              <!--TODO: Replace icon with user avatar-->
+              <v-icon>mdi-account</v-icon>
+            </v-avatar>
+            <v-avatar
+              v-else
+              color="blue-grey"
+              size="48"
+            >
+              <v-progress-circular
+                indeterminate
+                color="white"
+              ></v-progress-circular>
             </v-avatar>
           </v-btn>
         </template>
@@ -26,7 +38,8 @@
               <v-avatar
                 color="blue-grey"
               >
-                <span class="white--text text-h5">{{ user.initials }}</span>
+                <!--TODO: Replace icon with user avatar-->
+                <v-icon color="white">mdi-account</v-icon>
               </v-avatar>
               <h3 class="mt-2">{{ user.username }}</h3>
               <p class="text-caption mt-1">
@@ -71,16 +84,29 @@
     name: "UserMenu",
      data() {
       return {
-      user: {
-        initials: 'JD',
-        email: 'john.doe@doe.com',
-        username: 'John Doe'
-      },
+        dataLoading: true,
+        user: {
+          initials: '',
+          email: '',
+          username: ''
+        }
     }
     },
     methods: {
-        logOut() {
-        }
+      logOut() {},
+      getUserInfo() {
+        setTimeout(() => {this.user.username = this.$userInfo.preferred_username; 
+          this.user.initials = "U1";
+          this.user.email = "user1@gmail.com";
+          console.log(this.$test);
+          //TODO: check if the data is loaded, if not wait some more
+          this.dataLoading = false;
+        }, 200);
+      }
+    },
+    mounted() {
+      this.getUserInfo();
     }
   }
 </script>
+
