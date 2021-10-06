@@ -10,8 +10,9 @@ Vue.use(authentication)
 Vue.$keycloak
   .init({ onLoad: 'check-sso', checkLoginIframe: false })
   .then(() => {
-    Vue.$keycloak.loadUserInfo().then(function(data){
-      window.userInfo = data.preferred_username;
+    Vue.$keycloak.loadUserInfo().then(function(data) {
+      Vue.prototype.$userInfo = data;
+      console.log(data);
     }); 
     
     new Vue({
