@@ -1,13 +1,18 @@
 <template>
   <nav>
     <v-toolbar dark extended>
-      <a href="/" style="text-decoration: none;">
-      <v-toolbar-title class="headline text-uppercase grey--text mt-10 px-5">
-        <span class="font-weight-light">A Blog by </span>
-        <span>TheDxns</span>
-      </v-toolbar-title>
-      </a>
+      <v-row justify="start">
+        <v-col>
+          <a href="/" style="text-decoration: none;">
+            <v-toolbar-title class="headline text-uppercase grey--text mt-14 px-5">
+              <span class="font-weight-light">A Blog by </span>
+              <span>TheDxns</span>
+            </v-toolbar-title>
+            </a>
+        </v-col>
       <v-spacer></v-spacer>
+      <v-col
+      cols="4">
       <div class="mt-16 pr-5">
         <v-btn href="/" text>
           <span class="mr-2 font-weight-light">Home</span>
@@ -25,17 +30,24 @@
           <span class="mr-2 font-weight-light">Github repo</span>
         </v-btn>
       </div>
-      <v-row justify="end">
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-col
+      cols="2">
+        <div v-if="loggedInUser === 'undefined'">
         <v-btn
-                v-if="anonymous()"
                 href="/authorized"
-                class="mt-5"
+                class="mt-10 ml-16"
                 text
             >
-                <span class="mr-2 font-weight-light">Sign up/Log in</span>
+                <span class="ml-2 font-weight-light">Sign up/Log in</span>
                 <v-icon>mdi-account</v-icon>
          </v-btn>
-        <UserMenu v-else />
+        </div>
+        <div v-else>
+        <UserMenu  />
+        </div>
+      </v-col>
       </v-row>
     </v-toolbar>
   </nav>
@@ -50,13 +62,27 @@ export default {
   },
   data() {
       return {
-        loggedInUser: null
+        loggedInUser: ''
       }
     },
     methods: {
       anonymous() {
-        return false;
+        setTimeout(() => {
+          console.log(this.$userInfo);
+            if (this.$userInfo === 'undefined') {
+              console.log(true);
+              this.loggedInUser = 'undefined';
+              this.$forceUpdate();
+            } else {
+              console.log(false)
+              this.loggedInUser = this.$userInfo.preferred_username;
+              this.$forceUpdate();
+            }
+          }, 300);
       }
-    }
+  },
+  mounted() {
+    this.anonymous();
+  }
 }
 </script>

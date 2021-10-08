@@ -3,11 +3,18 @@
         bottom
         min-width="200px"
         rounded
+        offset-x
         offset-y
       >
         <template v-slot:activator="{ on }">
+          <v-row>
+          <v-col
+          cols="6">
+          </v-col>
+          <v-col
+          cols="6">
           <v-btn
-            class="mr-5 mt-5"
+            class="ml-3 mt-10"
             icon
             x-large
             v-on="on"
@@ -15,10 +22,24 @@
             <v-avatar
               color="blue-grey"
               size="48"
+              v-if="!dataLoading"
             >
-              <span class="white--text text-h5">{{ user.initials }}</span>
+              <!--TODO: Replace icon with user avatar-->
+              <v-icon>mdi-account</v-icon>
+            </v-avatar>
+            <v-avatar
+              v-else
+              color="blue-grey"
+              size="48"
+            >
+              <v-progress-circular
+                indeterminate
+                color="white"
+              ></v-progress-circular>
             </v-avatar>
           </v-btn>
+        </v-col>
+        </v-row>
         </template>
         <v-card>
           <v-list-item-content class="justify-center">
@@ -26,7 +47,8 @@
               <v-avatar
                 color="blue-grey"
               >
-                <span class="white--text text-h5">{{ user.initials }}</span>
+                <!--TODO: Replace icon with user avatar-->
+                <v-icon color="white">mdi-account</v-icon>
               </v-avatar>
               <h3 class="mt-2">{{ user.username }}</h3>
               <p class="text-caption mt-1">
@@ -71,16 +93,33 @@
     name: "UserMenu",
      data() {
       return {
-      user: {
-        initials: 'JD',
-        email: 'john.doe@doe.com',
-        username: 'John Doe'
-      },
+        dataLoading: true,
+        user: {
+          initials: '',
+          email: '',
+          username: ''
+        }
     }
     },
     methods: {
-        logOut() {
-        }
+      logOut() {
+          document.location.replace("http://localhost:8180/auth/realms/Blog/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/");
+          this.getUserInfo();
+      },
+      getUserInfo() {
+        setTimeout(() => {
+          this.user.username = this.$userInfo.preferred_username; 
+          this.user.roles = this.$userInfo.preferred_username
+          this.user.initials = "U1";
+          this.user.email = "user1@gmail.com";
+          //TODO: check if the data is loaded, if not wait some more
+          this.dataLoading = false;
+        }, 300);
+      }
+    },
+    mounted() {
+      this.getUserInfo();
     }
   }
 </script>
+

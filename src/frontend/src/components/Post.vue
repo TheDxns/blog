@@ -4,7 +4,7 @@
       max-width="440"
       min-width="440"
       min-height="200"
-      max-height="400"
+      max-height="500"
       outlined
       tile
     >
