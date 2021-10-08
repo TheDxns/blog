@@ -6,9 +6,18 @@
           class="d-flex flex-wrap mx-16"
           flat
           tile>
-            <Post v-for="post in posts" :key="post.content" v-bind:post="post"/>
+            <Post v-for="post in paginate" :key="post.content" v-bind:post="post"/>
           </v-card>
         </ul>
+        <div class="text-center">
+        <v-pagination
+          color="black"
+          v-model="currentPage"
+          :length="totalPages"
+          prev-icon="mdi-menu-left"
+          next-icon="mdi-menu-right"
+        ></v-pagination>
+        </div>
   </v-container>
 </template>
 
@@ -19,6 +28,9 @@ import Post from '@/components/Post.vue'
     name: 'PostSection',
     data() {
       return {
+        currentPage: 1,
+        itemsPerPage: 6,
+        resultCount: 0,
         posts: []
       }
     },
@@ -31,6 +43,18 @@ import Post from '@/components/Post.vue'
           .then((data) => {
             this.posts = data;
           })
-    }
+    },
+    computed: {
+            totalPages: function() {
+                return Math.ceil(this.posts.length / this.itemsPerPage)
+            },
+            paginate: function() {
+                let index = this.currentPage * this.itemsPerPage - this.itemsPerPage
+                return this.posts.slice(index, index + this.itemsPerPage)
+            }
+        },
+        methods: {
+          
+        }
   }
 </script>
