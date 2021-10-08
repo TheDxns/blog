@@ -3,11 +3,18 @@
         bottom
         min-width="200px"
         rounded
+        offset-x
         offset-y
       >
         <template v-slot:activator="{ on }">
+          <v-row>
+          <v-col
+          cols="6">
+          </v-col>
+          <v-col
+          cols="6">
           <v-btn
-            class="mr-5 mt-5"
+            class="ml-3 mt-10"
             icon
             x-large
             v-on="on"
@@ -31,6 +38,8 @@
               ></v-progress-circular>
             </v-avatar>
           </v-btn>
+        </v-col>
+        </v-row>
         </template>
         <v-card>
           <v-list-item-content class="justify-center">
@@ -93,15 +102,19 @@
     }
     },
     methods: {
-      logOut() {},
+      logOut() {
+          document.location.replace("http://localhost:8180/auth/realms/Blog/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/");
+          this.getUserInfo();
+      },
       getUserInfo() {
-        setTimeout(() => {this.user.username = this.$userInfo.preferred_username; 
+        setTimeout(() => {
+          this.user.username = this.$userInfo.preferred_username; 
+          this.user.roles = this.$userInfo.preferred_username
           this.user.initials = "U1";
           this.user.email = "user1@gmail.com";
-          console.log(this.$test);
           //TODO: check if the data is loaded, if not wait some more
           this.dataLoading = false;
-        }, 200);
+        }, 300);
       }
     },
     mounted() {
