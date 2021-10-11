@@ -5,7 +5,7 @@
         <h1 class="mt-6 ml-16 font-weight-light">Profile settings:</h1>
         <form class="mt-10">
             <v-text-field
-            v-model="user.firstname"
+            v-model="$keycloak.idTokenParsed.given_name"
             :error-messages="nameErrors"
             :counter="10"
             label="First name"
@@ -14,7 +14,7 @@
             @blur="$v.name.$touch()"
             ></v-text-field>
             <v-text-field
-            v-model="user.lastname"
+            v-model="$keycloak.idTokenParsed.family_name"
             :error-messages="nameErrors"
             :counter="10"
             label="Last name"
@@ -23,7 +23,7 @@
             @blur="$v.name.$touch()"
             ></v-text-field>
             <v-text-field
-            v-model="user.email"
+            v-model="$keycloak.idTokenParsed.email"
             :error-messages="emailErrors"
             label="E-mail"
             required
@@ -31,7 +31,7 @@
             @blur="$v.email.$touch()"
             ></v-text-field>
             <v-text-field
-            v-model="user.authority"
+            v-model="$keycloak.idTokenParsed.roles"
             :error-messages="emailErrors"
             label="Authorities"
             disabled
@@ -72,13 +72,6 @@
       name: '',
       email: '',
       select: null,
-      user: {
-        firstname: 'John',
-        lastname: "Doe",
-        email: 'john.doe@doe.com',
-        username: 'jdoe217',
-        authority: 'Redactor, User'
-      },
       items: [
         'Item 1',
         'Item 2',

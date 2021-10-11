@@ -34,23 +34,25 @@
       <v-spacer></v-spacer>
       <v-col
       cols="2">
-        <div v-if="loggedInUser === 'undefined'">
-        <v-btn
-                href="/authorized"
-                class="mt-10 ml-16"
-                text
-            >
-                <span class="ml-2 font-weight-light">Sign up/Log in</span>
-                <v-icon>mdi-account</v-icon>
-         </v-btn>
+      <div v-if="$keycloak.ready">
+        <div v-if="$keycloak.authenticated">
+          <UserMenu />
         </div>
         <div v-else>
-        <UserMenu  />
+          <v-btn
+            @click="$keycloak.login"
+            class="mt-10 ml-16"
+            text
+          >
+            <span class="ml-2 font-weight-light">Sign up/Log in</span>
+            <v-icon>mdi-account</v-icon>
+          </v-btn>
+          </div>
         </div>
       </v-col>
-      </v-row>
-    </v-toolbar>
-  </nav>
+    </v-row>
+  </v-toolbar>
+</nav>
 </template>
 <script>
 import UserMenu from '@/components/UserMenu.vue'
@@ -62,27 +64,9 @@ export default {
   },
   data() {
       return {
-        loggedInUser: ''
       }
     },
     methods: {
-      anonymous() {
-        setTimeout(() => {
-          console.log(this.$userInfo);
-            if (this.$userInfo === 'undefined') {
-              console.log(true);
-              this.loggedInUser = 'undefined';
-              this.$forceUpdate();
-            } else {
-              console.log(false)
-              this.loggedInUser = this.$userInfo.preferred_username;
-              this.$forceUpdate();
-            }
-          }, 300);
-      }
-  },
-  mounted() {
-    this.anonymous();
+    }
   }
-}
 </script>
