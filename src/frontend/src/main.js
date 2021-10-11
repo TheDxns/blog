@@ -2,13 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router'
-import authentication from "@/plugins/authentication"
+import VueKeycloakJs from '@dsb-norge/vue-keycloak-js'
 import VueLogger from 'vuejs-logger';
 
 Vue.config.productionTip = false
-Vue.use(authentication)
+
+//Vue logger config
 const isProduction = process.env.NODE_ENV === 'production';
-const options = {
+const vueLoggerOptions = {
   isEnabled: true,
   logLevel : isProduction ? 'error' : 'debug',
   stringifyArguments : false,
@@ -17,9 +18,34 @@ const options = {
   separator: '|',
   showConsoleColors: true
 };
+Vue.use(VueLogger, vueLoggerOptions);
 
-Vue.use(VueLogger, options);
+Vue.use(VueKeycloakJs, {
+  init: {
+    // Use 'login-required' to always require authentication
+    // If using 'login-required', there is no need for the router guards in router.js
+    onLoad: 'check-sso',
+    checkLoginFrame: false
+  },
+  config: {
+    url: 'http://localhost:8180/auth/',
+    realm: 'Blog',
+    clientId: 'blog-client'
+  },
+  onReady (keycloak) {
+    console.log(keycloak);
 
+    new Vue({
+      vuetify,
+      router,
+      render: h => h(App),
+      }).$mount('#app')
+  }
+})
+
+
+
+/*
 Vue.$keycloak
   .init({ onLoad: 'check-sso', checkLoginIframe: false })
   .then(() => {
@@ -31,17 +57,7 @@ Vue.$keycloak
       console.error(error);
     }); 
     
-    new Vue({
-      vuetify,
-      router,
-      render: h => h(App, 
-        {
-          props: {
-            
-          }
-        })
-    }).$mount('#app')
-
+    
     
     setInterval(() => {
       Vue.$keycloak.updateToken(70).then((refreshed) => {
@@ -59,3 +75,4 @@ Vue.$keycloak
   }).catch(() => {
     Vue.$log.error("Authenticated Failed");
   });
+  */
