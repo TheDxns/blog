@@ -28,13 +28,12 @@ public class Post
     @NotBlank(message = "The category of the post must not be empty")
     private String category;
 
+    @NotBlank(message = "The creator of the post must be set")
+    private String creator;
+
     private LocalDateTime createdOn;
 
     private LocalDateTime updatedOn;
-
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User creator;
 
     public Post() {
     }
@@ -79,11 +78,11 @@ public class Post
         this.category = category;
     }
 
-    public User getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreatorId(String creator) {
         this.creator = creator;
     }
 
