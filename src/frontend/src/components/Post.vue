@@ -13,28 +13,22 @@
         link
         color="white"
         >
-            <v-avatar left>
-              <img
-                  :src=creator[0].avatarUrl
-                  alt=""
-              >
+            <v-avatar left color="blue-grey white--text">
+              {{ initials }}
             </v-avatar>
-            {{creator[0].firstname}} {{creator[0].surname}}
+            {{ this.user.firstName }} {{this.user.lastName}}
           </v-chip>
           <v-chip
           label
           class=""
           color="white"
           >
-                20.09.2021, 10:31
+                {{this.post.createdOn}}
           </v-chip>
         <p class="text-h5 text--primary mt-auto mx-2">
           {{ this.post.title }}
         </p>
-        <p>{{ this.post.creator }}</p>
-        <div class="text--primary mx-2 mt-auto">
-          {{ this.post.sneakPeak }}
-        </div>
+        <div class="text--primary mx-2 mt-auto" v-html=post.sneakPeak />
       </v-card-text>
       <v-card-actions class="mt-auto">
         <v-btn
@@ -55,18 +49,27 @@ export default {
   name: 'Post',
   props: ['post'],
   data() {
-      return {
-        name: "Denis Lukasczyk",
-        dateCreated: "20.09.2021",
-        creator: [
-          {
-            id: 1,
-            firstname: "Sam",
-            surname: "Smith",
-            avatarUrl: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-          }
-        ]
-      }
+    return {
+      user: null,
+      initials: ''
+    }
+  },
+  methods: {
+    fetchUser() {
+      fetch("http://localhost:8180/auth/admin/realms/Blog/users/" + this.post.creator, {
+        headers: {
+        'Authorization':  'Bearer '+ this.$keycloak.token
     },
+      })
+          .then((response) => response.json())
+          .then((data) => {
+            this.user = data;
+            this.initials = this.user.firstName.charAt(0).concat(this.user.lastName.charAt(0));
+          })
+    }
+  }, 
+  mounted() {
+    this.fetchUser();
+  }
 }
 </script>
