@@ -4,11 +4,15 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import VueKeycloakJs from '@dsb-norge/vue-keycloak-js'
 import VueLogger from 'vuejs-logger';
+import wysiwyg from "vue-wysiwyg";
+
+
 
 Vue.config.productionTip = false
 
 //Vue logger config
 const isProduction = process.env.NODE_ENV === 'production';
+
 const vueLoggerOptions = {
   isEnabled: true,
   logLevel : isProduction ? 'error' : 'debug',
@@ -19,6 +23,8 @@ const vueLoggerOptions = {
   showConsoleColors: true
 };
 Vue.use(VueLogger, vueLoggerOptions);
+
+Vue.use(wysiwyg, {}); 
 
 Vue.use(VueKeycloakJs, {
   init: {

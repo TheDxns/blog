@@ -24,7 +24,7 @@
               size="48"
               v-if="!dataLoading"
             >
-              <v-icon>mdi-account</v-icon>
+              <span class="white--text text-h5">{{ initials }}</span>
             </v-avatar>
             <v-avatar
               v-else
@@ -46,7 +46,7 @@
               <v-avatar
                 color="blue-grey"
               >
-                <v-icon color="white">mdi-account</v-icon>
+                <span class="white--text text-h5">{{ initials }}</span>
               </v-avatar>
               <h3 class="mt-2">{{ $keycloak.idTokenParsed.name }}</h3>
               <p class="text-caption mt-1">
@@ -63,12 +63,23 @@
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
-                href="/profile-settings"
+                href="http://localhost:8180/auth/realms/Blog/account/#/personal-info"
+                target="_blank"
                 depressed
                 rounded
                 text
               >
                 Edit Account
+              </v-btn>
+              <v-divider class="my-3"></v-divider>
+              <v-btn
+                href="http://localhost:8180/auth/realms/Blog/account/#/security/signingin"
+                target="_blank"
+                depressed
+                rounded
+                text
+              >
+                Security Options
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
@@ -91,7 +102,8 @@
     name: "UserMenu",
      data() {
       return {
-        dataLoading: false
+        dataLoading: false,
+        initials: this.$keycloak.idTokenParsed.given_name.charAt(0).concat(this.$keycloak.idTokenParsed.family_name.charAt(0))
         }
     },
     methods: {

@@ -15,12 +15,7 @@
           label="Category"
           required
       ></v-select>
-      <v-textarea
-          v-model="postContent"
-          :counter="50"
-          label="Content"
-          required
-      ></v-textarea>
+      <wysiwyg v-model="postContent" />
       <v-btn
           style="width:15%"
           color="teal"
@@ -32,6 +27,8 @@
   </v-form>
 </template>
 <script>
+import "vue-wysiwyg\\dist\\vueWysiwyg.css";
+
 export default {
   name: 'PostForm',
   data() {
@@ -58,7 +55,7 @@ export default {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({title:this.postTitle, content:this.postContent, category:this.postCategory})
+        body:JSON.stringify({title:this.postTitle, content:this.postContent, category:this.postCategory, creatorId: this.$keycloak.idTokenParsed.sub})
       }).then(response => response.text())
         .then((response) => {
             console.log(response);
@@ -70,3 +67,4 @@ export default {
   },
 }
 </script>
+

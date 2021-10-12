@@ -31,7 +31,11 @@ public class PostService {
     }
 
     public boolean savePost(Post post) {
-        post.setSneakPeak(post.getContent());
+        if (post.getContent().length() > 990) {
+            post.setSneakPeak(post.getContent().substring(0, 990) + "...");
+        } else {
+            post.setSneakPeak(post.getContent());
+        }
         postRepository.save(post);
         return true;
     }
