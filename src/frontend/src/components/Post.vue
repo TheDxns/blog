@@ -23,7 +23,7 @@
           class=""
           color="white"
           >
-                {{this.post.createdOn}}
+                {{this.post.createdOn}} {{this.post.category}}
           </v-chip>
         <p class="text-h5 text--primary mt-auto mx-2">
           {{ this.post.title }}
