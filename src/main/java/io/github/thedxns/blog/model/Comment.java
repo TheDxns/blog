@@ -20,9 +20,7 @@ public class Comment {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User creator;
+    private String creator;
 
     private LocalDateTime createdOn;
 
@@ -60,11 +58,11 @@ public class Comment {
         this.post = post;
     }
 
-    public User getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 

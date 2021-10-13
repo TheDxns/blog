@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.thedxns.blog.logic.CommentService;
 import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Comment;
-import io.github.thedxns.blog.model.User;
 import io.github.thedxns.blog.pojo.CommentContent;
 
 @RestController

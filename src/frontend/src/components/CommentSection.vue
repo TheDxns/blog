@@ -38,7 +38,7 @@
             color="black white--text"
             small
             class="mr-4 mb-16"
-            @click="submit"
+            
             >
             Post comment
             </v-btn>

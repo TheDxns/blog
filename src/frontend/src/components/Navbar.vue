@@ -20,9 +20,27 @@
         <v-btn href="/about" text>
           <span class="mr-2 font-weight-light">About</span>
         </v-btn>
-        <v-btn href="/redactors" text>
-          <span class="mr-2 font-weight-light">Redactors</span>
-        </v-btn>
+        <template>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  text
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <span class="mr-2 font-weight-light">Categories</span>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(category, index) in categories"
+                  :key="index"
+                >
+                  <v-list-item-title>{{ category.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+        </template>
         <v-btn href="/contact" text>
           <span class="mr-2 font-weight-light">Contact</span>
         </v-btn>
@@ -62,11 +80,13 @@ export default {
   components: {
     UserMenu
   },
-  data() {
-      return {
-      }
-    },
-    methods: {
-    }
+  data: () => ({
+      categories: [
+        { title: 'Test' },
+        { title: 'Other' },
+        { title: 'Lorem Ipsum' },
+        { title: 'Web dev' },
+      ],
+    }),
   }
 </script>
