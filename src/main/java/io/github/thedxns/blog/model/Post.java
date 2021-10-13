@@ -31,6 +31,10 @@ public class Post
     @NotBlank(message = "The creator of the post must be set")
     private String creator;
 
+    private int likeNum;
+
+    private int dislikeNum;
+
     private LocalDateTime createdOn;
 
     private LocalDateTime updatedOn;
@@ -86,11 +90,29 @@ public class Post
         this.creator = creator;
     }
 
+    public int getLikeNum() {
+        return likeNum;
+    }
+
+    public void setLikeNum(int likeNum) {
+        this.likeNum = likeNum;
+    }
+
+    public int getDislikeNum() {
+        return likeNum;
+    }
+
+    public void setDislikeNum(int likeNum) {
+        this.likeNum = likeNum;
+    }
+
     public void updateFrom(final Post source) {
         content = source.content;
         sneakPeak = source.sneakPeak;
         category = source.category;
         creator = source.creator;
+        likeNum = source.likeNum;
+        dislikeNum = source.dislikeNum;
     }
 
     @PrePersist
