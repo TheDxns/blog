@@ -3,8 +3,9 @@
 #
 # What are the main features?
 # - account registration & logon (via integration with Keycloak)
-# - publishing posts & comments
-# - post & comment rating
+# - publishing posts
+# - commenting on the posts (via integration with Disqus)
+# - contact page
 # - post filtering
 # - content management
 # - subscription feature (via integration with SendGrid)
