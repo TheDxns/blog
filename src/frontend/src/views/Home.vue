@@ -9,7 +9,7 @@
           <v-row>
             <v-col
             cols:12>
-              <h1 class="mt-10 font-weight-light">Most popular posts:</h1>
+              <h1 class="mt-10 font-weight-light">Worth reading:</h1>
             </v-col>
           </v-row>
           <v-row class="mt-5">
@@ -24,7 +24,7 @@
           <v-row>
             <v-col
             cols:12>
-              <h1 class="mt-10 font-weight-light">Top rated posts:</h1>
+              <h1 class="mt-10 font-weight-light">Most popular:</h1>
             </v-col>
           </v-row>
           <v-row class="mt-5">
