@@ -56,11 +56,7 @@ export default {
   },
   methods: {
     fetchUser() {
-      fetch("http://localhost:8180/auth/admin/realms/Blog/users/" + this.post.creator, {
-        headers: {
-        'Authorization':  'Bearer '+ this.$keycloak.token
-    },
-      })
+      fetch("http://localhost:3000/api/users/" + this.post.creator)
           .then((response) => response.json())
           .then((data) => {
             this.user = data;
