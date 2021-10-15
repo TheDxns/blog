@@ -18,8 +18,7 @@ const routes = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: "About",
-      isAuthenticated: false
+      title: "About"
     }
   },
   {
@@ -27,8 +26,7 @@ const routes = [
     name: 'Contact',
     component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
     meta: {
-      title: "Contact",
-      isAuthenticated: false
+      title: "Contact"
     }
   },
   {
@@ -37,7 +35,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "new-post" */ '../views/NewPost.vue'),
     meta: {
       title: "Create a new post",
-      isAuthenticated: true
+      requiresAuth: true
     }
   },
   {
@@ -46,27 +44,17 @@ const routes = [
 
     component: () => import(/* webpackChunkName: "new-post" */ '../views/PostView.vue'),
     meta: {
-      title: "Show post",
-      isAuthenticated: false
+      title: "Show post"
     }
   },
   {
     path: '/unauthorized',
     name: 'Unauthorized',
     meta: {
-      isAuthenticated: false
+      title: "Not authorized"
     },
     component: () => import('../views/Unauthorized.vue')
-  },
-  {
-    path: '/profile-settings',
-    name: 'ProfileSettings',
-    component: () => import(/* webpackChunkName: "new-post" */ '../views/ProfileSettings.vue'),
-    meta: {
-      title: "Profile settings"
-    }
   }
-
 ]
 
 const router = new VueRouter({
@@ -75,9 +63,26 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // We wait for Keycloak init, then we can call all methods safely
+    while (router.app.$keycloak.createLoginUrl === null) {
+      await sleep(100)
+    }
+    if (router.app.$keycloak.authenticated) {
+      next()
+    } else {
+      const loginUrl = router.app.$keycloak.createLoginUrl()
+      window.location.replace(loginUrl)
+    }
+  } else {
     document.title = to.meta.title;
     next()
-  })
+  }
+})
 
 export default router
