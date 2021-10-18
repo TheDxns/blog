@@ -8,7 +8,7 @@
       outlined
       tile
     >
-      <v-card-text class="font-weight-light">
+      <v-card-text class="font-weight-light" style="max-height: 450px; overflow:hidden;">
         <v-chip
         link
         color="white"
@@ -28,7 +28,7 @@
         <p class="text-h5 text--primary mt-auto mx-2">
           {{ this.post.title }}
         </p>
-        <div class="text--primary mx-2 mt-auto" v-html=post.sneakPeak />
+        <div class="text--primary mx-2 mt-auto" style="overflow-x:hidden; overflow-y:hidden;"  v-html=post.sneakPeak />
       </v-card-text>
       <v-card-actions class="mt-auto">
         <v-btn
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     fetchUser() {
-      fetch("http://localhost:3000/api/users/" + this.post.creator)
+      fetch("http://localhost:3000/api/users/" + this.post.creatorId)
           .then((response) => response.json())
           .then((data) => {
             this.user = data;

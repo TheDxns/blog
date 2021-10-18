@@ -62,8 +62,8 @@ export default {
          pageConfig: {
           title: 'My custom title',
           category_id: 'sports',
-          url: window.location.href,
-          identifier: window.location.href
+          url: "thedxnsblog.disqus.com",
+          identifier: "thedxnsblog.disqus.com",
         }
       }
     },
@@ -81,7 +81,7 @@ export default {
       },
       fetchUser() {
         setTimeout(() => {
-        fetch("http://localhost:3000/api/users/" + this.post.creator)
+        fetch("http://localhost:3000/api/users/" + this.post.creatorId)
               .then((response) => response.json())
               .then((data) => {
                 this.creator = data;
