@@ -1,9 +1,9 @@
 package io.github.thedxns.blog.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 
@@ -28,12 +28,14 @@ public class Post
     @NotBlank(message = "The category of the post must not be empty")
     private String category;
 
-    @NotBlank(message = "The creator of the post must be set")
-    private String creator;
+    @NotBlank(message = "The ID of the creator of the post must be set")
+    private String creatorId;
 
-    private int likeNum;
+    @NotBlank(message = "The username of the creator of the post must be set")
+    private String creatorUsername;
 
-    private int dislikeNum;
+    @NotNull(message = "Missing 'featured' field")
+    private boolean featured;
 
     private LocalDateTime createdOn;
 
@@ -82,37 +84,37 @@ public class Post
         this.category = category;
     }
 
-    public String getCreator() {
-        return creator;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatorId(String creator) {
-        this.creator = creator;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public int getLikeNum() {
-        return likeNum;
+    public String getCreatorUsername() {
+        return creatorUsername;
     }
 
-    public void setLikeNum(int likeNum) {
-        this.likeNum = likeNum;
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
     }
 
-    public int getDislikeNum() {
-        return likeNum;
+    public boolean getFeatured() {
+        return featured;
     }
 
-    public void setDislikeNum(int likeNum) {
-        this.likeNum = likeNum;
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
     }
 
     public void updateFrom(final Post source) {
         content = source.content;
         sneakPeak = source.sneakPeak;
         category = source.category;
-        creator = source.creator;
-        likeNum = source.likeNum;
-        dislikeNum = source.dislikeNum;
+        creatorId = source.creatorId;
+        creatorUsername = source.creatorUsername;
+        featured = source.featured;
     }
 
     @PrePersist

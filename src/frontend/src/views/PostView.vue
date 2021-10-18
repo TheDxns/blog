@@ -33,21 +33,12 @@
     </v-row>
     <v-row class="ml-16">
       <v-col cols="12" class="ml-16 mt-10">
-        <v-btn
-        class="ml-12"
-        text>
-        <v-icon>mdi-thumb-up</v-icon> (34)
-        </v-btn>
-        <v-btn
-        text>
-        <v-icon>mdi-thumb-down</v-icon> (7)
-        </v-btn>
       </v-col>
     </v-row>
     <v-row class="mx-16">
       <v-col cols="12" class="mt-5">
           <h3 class="mt-16">
-            <CommentSection/>
+            <Disqus shortname='thedxnsblog' :pageConfig="pageConfig"/>
           </h3>
       </v-col>
     </v-row>
@@ -55,19 +46,25 @@
 </template>
 
 <script>
-import CommentSection from '@/components/CommentSection.vue'
+import { Disqus } from 'vue-disqus'
 
 export default {
   name: 'PostView',
   components: {
-    CommentSection
+    Disqus
   },
     data() {
       return {
         post: null,
         creator: null,
         initials: '',
-        dateCreated: "20.09.2021"
+        dateCreated: "20.09.2021",
+         pageConfig: {
+          title: 'My custom title',
+          category_id: 'sports',
+          url: "thedxnsblog.disqus.com",
+          identifier: "thedxnsblog.disqus.com",
+        }
       }
     },
     methods: {
@@ -84,15 +81,12 @@ export default {
       },
       fetchUser() {
         setTimeout(() => {
-        fetch("http://localhost:8180/auth/admin/realms/Blog/users/" + this.post.creator, {
-          headers: {
-          'Authorization':  'Bearer '+ this.$keycloak.token
-          },
-            }).then((response) => response.json())
+        fetch("http://localhost:3000/api/users/" + this.post.creatorId)
+              .then((response) => response.json())
               .then((data) => {
                 this.creator = data;
                 this.initials = this.creator.firstName.charAt(0).concat(this.creator.lastName.charAt(0));
-              })}, 100);
+              })}, 200);
       }
     },
     mounted() {
