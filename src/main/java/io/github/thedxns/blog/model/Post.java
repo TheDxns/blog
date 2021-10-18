@@ -2,6 +2,8 @@ package io.github.thedxns.blog.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 
@@ -26,8 +28,14 @@ public class Post
     @NotBlank(message = "The category of the post must not be empty")
     private String category;
 
-    @NotBlank(message = "The creator of the post must be set")
-    private String creator;
+    @NotBlank(message = "The ID of the creator of the post must be set")
+    private String creatorId;
+
+    @NotBlank(message = "The username of the creator of the post must be set")
+    private String creatorUsername;
+
+    @NotNull(message = "Missing 'featured' field")
+    private boolean featured;
 
     private LocalDateTime createdOn;
 
@@ -76,19 +84,37 @@ public class Post
         this.category = category;
     }
 
-    public String getCreator() {
-        return creator;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatorId(String creator) {
-        this.creator = creator;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public String getCreatorUsername() {
+        return creatorUsername;
+    }
+
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
+    }
+
+    public boolean getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
     }
 
     public void updateFrom(final Post source) {
         content = source.content;
         sneakPeak = source.sneakPeak;
         category = source.category;
-        creator = source.creator;
+        creatorId = source.creatorId;
+        creatorUsername = source.creatorUsername;
+        featured = source.featured;
     }
 
     @PrePersist
