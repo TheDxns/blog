@@ -31,6 +31,11 @@ public class PostController {
         return ResponseEntity.ok(postService.getAllPosts(page));
     }
 
+    @GetMapping("/featured")
+    public ResponseEntity<List<Post>> getFeaturedPosts() {
+        return ResponseEntity.ok(postService.getAllFeatured());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable int id) {
         return ResponseEntity.ok(postService.getPost(id));

@@ -2,7 +2,6 @@ package io.github.thedxns.blog.logic;
 
 import io.github.thedxns.blog.model.Post;
 import io.github.thedxns.blog.model.repositories.PostRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,10 @@ public class PostService {
 
     public List<Post> getAllPosts(Pageable page) {
         return postRepository.findAll(page).getContent();
+    }
+
+    public List<Post> getAllFeatured() {
+        return postRepository.findByFeatured(true);
     }
 
     public Post getPost(int id) {
