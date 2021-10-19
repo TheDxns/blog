@@ -78,6 +78,11 @@
             <artifactId>keycloak-admin-client</artifactId>
             <version>15.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.7.5</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
