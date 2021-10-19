@@ -2,15 +2,18 @@
   <v-container>
     <v-row class="mx-16">
       <v-col cols="10" class="mx-16">
-        <h1 class="mt-6 ml-16 font-weight-light">Contact:</h1>
+        <h1 class="mt-6 ml-16 font-weight-light">Contact</h1>
+        <v-row class="mt-7">
+          <v-col>
+            <h2 class="ml-16 font-weight-light">Contact form:</h2>
           <v-card
-    class="mx-auto"
+    class="mx-auto mt-10"
     max-width="500"
   >
     <v-card-title class="text-h6 font-weight-regular justify-space-between">
       <span>{{ currentTitle }}</span>
       <v-avatar
-        color="primary lighten-2"
+        color="secondary lighten-2"
         class="subheading white--text"
         size="24"
         v-text="step"
@@ -22,28 +25,25 @@
         <v-card-text>
           <v-text-field
             label="Full name"
-            value="John Doe"
+            v-model="name"
           ></v-text-field>
           <v-text-field
             label="Email"
-            value="john@example.com"
+            v-model="email"
           ></v-text-field>
           <v-textarea
             :counter="50"
             label="Message"
-            value="Hi! I like your blog. Can I join as an redactor?"
+            v-model="message"
           ></v-textarea>
         </v-card-text>
       </v-window-item>
 
       <v-window-item :value="2">
         <div class="pa-4 text-center">
-          <v-img
-            class="mb-4"
-            contain
-            height="128"
-            src="https://cdn.vuetifyjs.com/images/logos/v.svg"
-          ></v-img>
+          <v-icon
+            x-large
+          >mdi-email-fast</v-icon>
           <h3 class="text-h6 font-weight-light mb-2">
             The message has been sent. 
           </h3>
@@ -56,7 +56,7 @@
 
     <v-card-actions>
       <v-btn
-        :disabled="step === 1"
+        :disabled="step === 2"
         text
         @click="step--"
       >
@@ -65,15 +65,26 @@
       <v-spacer></v-spacer>
       <v-btn
         :disabled="step === 2"
-        color="primary"
+        color="secondary"
         depressed
-        @click="step++"
+        @click="step++, sendMail()"
       >
         Next
       </v-btn>
     </v-card-actions>
   </v-card>
-      </v-col>
+  </v-col>
+  <v-col>
+        <h2 class="font-weight-light">Alternative contact methods:</h2>
+        <div class="mt-10">
+        <v-icon x-large>mdi-email</v-icon> <span class="text-h6">denis.lukasczyk@gmail.com </span><br />
+        <v-icon x-large>mdi-linkedin</v-icon> <span class="text-h6">LinkedIn account </span><br />
+        <v-icon x-large>mdi-github</v-icon> <span class="text-h6">GitHub account </span><br />
+        </div>
+        
+  </v-col>
+  </v-row>
+        </v-col>
     </v-row>
   </v-container>
 </template>
@@ -82,8 +93,10 @@
   export default {
     data: () => ({
       step: 1,
+      name: 'John Doe',
+      email: 'john@example.com',
+      message: 'Hi! I like your blog. Can I join as an redactor?'
     }),
-
     computed: {
       currentTitle () {
         switch (this.step) {
@@ -91,6 +104,23 @@
           default: return 'The message was sent'
         }
       },
-    },
+    }, methods: {
+      sendMail() {
+        fetch("/api/contact", {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({subject:this.email, content:this.message, recipient:this.name})
+      }).then(response => response.text())
+        .then((response) => {
+            console.log(response);
+            window.alert(response);
+            this.step = 2;
+        })
+        .catch(err => console.log(err));
+      }
+    }
   }
 </script>
