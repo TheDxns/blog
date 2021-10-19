@@ -10,7 +10,7 @@ spring:
 keycloak:
   realm: 'Blog'
   auth-server-url: 'http://localhost:8180/auth'
-  ssl-required: external
   resource: 'blog-api'
+  ssl-required: none
   use-resource-role-mappings: true
   bearer-only: true
