@@ -13,16 +13,26 @@ import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 @Service
 public class MailService {
     
+    private final String apiKey;
+
+    @Autowired
+    public MailService(@Value("${sendgrid.key}") String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     public boolean sendMail(MailBody mailBody) throws Exception {
         Email from = new Email("denis.lukasczyk@gmail.com");
         String subject = mailBody.getSubject();
         Email to = new Email(mailBody.getRecipient());
         Content content = new Content("text/plain", mailBody.getContent());
         Mail mail = new Mail(from, subject, to, content);
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
         try {
           request.setMethod(Method.POST);
