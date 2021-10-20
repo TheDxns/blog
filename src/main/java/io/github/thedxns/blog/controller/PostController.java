@@ -41,6 +41,16 @@ public class PostController {
         return ResponseEntity.ok(postService.getPost(id));
     }
 
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<Post>> getPostsByCreator(@PathVariable String username) {
+        return ResponseEntity.ok(postService.getAllByCreator(username));
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Post>> getPostsByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(postService.getAllByCategory(category));
+    }
+
     @PostMapping
     public ResponseEntity<?> savePost(@Valid @RequestBody Post post) {
         if (postService.savePost(post)) {
