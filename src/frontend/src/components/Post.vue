@@ -12,6 +12,7 @@
         <v-chip
         link
         color="white"
+        @click="setFilterUser(user.firstName, user.lastName, user.username)"
         >
             <v-avatar left color="blue-grey white--text">
               {{ initials }}
@@ -22,6 +23,7 @@
           label
           class=""
           color="white"
+          @click="setFilterCategory(post.category)"
           >
                 {{this.post.createdOn}} {{this.post.category}}
           </v-chip>
@@ -62,7 +64,13 @@ export default {
             this.user = data;
             this.initials = this.user.firstName.charAt(0).concat(this.user.lastName.charAt(0));
           })
-    }
+    },
+    setFilterUser(name, surname, username) {
+      this.$emit('setfilteruser', name, surname, username)
+    },
+    setFilterCategory(category) {
+      this.$emit('setfiltercategory', category)
+    },
   }, 
   mounted() {
     this.fetchUser();
