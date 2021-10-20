@@ -33,6 +33,14 @@ public class PostService {
         return postRepository.findById(id).get();
     }
 
+    public List<Post> getAllByCreator(String username) {
+        return postRepository.findByCreatorUsername(username);
+    }
+
+    public List<Post> getAllByCategory(String category) {
+        return postRepository.findByCategory(category);
+    }
+
     public boolean savePost(Post post) {
         if (post.getContent().length() > 990) {
             post.setSneakPeak(post.getContent().substring(0, 990) + "...");
