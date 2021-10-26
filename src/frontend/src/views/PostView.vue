@@ -24,6 +24,7 @@
           v-if="$keycloak.idTokenParsed.roles.includes('admin')"
           x-small
           text
+          @click="editPost()"
           >
           Edit post
           </v-btn>
@@ -105,7 +106,7 @@ export default {
               })}, 200);
       },
       editPost() {
-
+        document.location.replace('/edit/posts/' + this.post.id);
       },
       deletePost() {
         fetch("/api/posts/" + this.post.id, { method: 'delete' })
