@@ -28,7 +28,7 @@
                 {{this.post.createdOn}} {{this.post.category}}
           </v-chip>
         <p class="text-h5 text--primary mt-auto mx-2">
-          {{ this.post.title }}
+          <a :href="'http://localhost:3000/posts/' + this.post.id" style="text-decoration:none;" class="black--text">{{ this.post.title }}</a>
         </p>
         <div class="text--primary mx-2 mt-auto" style="overflow-x:hidden; overflow-y:hidden;"  v-html=post.sneakPeak />
       </v-card-text>
