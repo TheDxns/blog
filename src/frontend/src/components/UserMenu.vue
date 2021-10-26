@@ -62,16 +62,28 @@
                 New post
               </v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                href="http://localhost:8180/auth/realms/Blog/account/#/personal-info"
-                target="_blank"
-                depressed
-                rounded
-                text
-              >
-                Edit Account
-              </v-btn>
+              <div v-if="$keycloak.idTokenParsed.roles.includes('admin')">
+                <v-btn 
+                  href=""
+                  target="_blank"
+                  depressed
+                  rounded
+                  text
+                >
+                Manage posts
+                </v-btn>
+                <v-divider class="my-3"></v-divider>
+                <v-btn
+                  href="http://localhost:8180/auth/realms/Blog/account/#/personal-info"
+                  target="_blank"
+                  depressed
+                  rounded
+                  text
+                >
+                  Edit Account
+                </v-btn>
               <v-divider class="my-3"></v-divider>
+              </div>
               <v-btn
                 href="http://localhost:8180/auth/realms/Blog/account/#/security/signingin"
                 target="_blank"
@@ -112,4 +124,3 @@
     }
   }
 </script>
-

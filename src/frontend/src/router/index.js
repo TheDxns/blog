@@ -48,6 +48,15 @@ const routes = [
     }
   },
   {
+    path: '/edit/posts/*',
+    name: 'PostEdit',
+
+    component: () => import(/* webpackChunkName: "new-post" */ '../views/PostEdit.vue'),
+    meta: {
+      title: "Edit post"
+    }
+  },
+  {
     path: '/unauthorized',
     name: 'Unauthorized',
     meta: {
