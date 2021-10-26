@@ -18,8 +18,24 @@
           class=""
           color="white"
           >
-                Published on 20.09.2021, 10:31
+          Published on 20.09.2021, 10:31
           </v-chip>
+          <v-btn
+          v-if="$keycloak.idTokenParsed.roles.includes('admin')"
+          x-small
+          text
+          >
+          Edit post
+          </v-btn>
+          <v-btn
+          v-if="$keycloak.idTokenParsed.roles.includes('admin')"
+          x-small
+          text
+          color="red"
+          @click="deletePost()"
+          >
+          Delete post
+          </v-btn>
       </v-col>
     </v-row>
     <v-row class="">
@@ -87,6 +103,19 @@ export default {
                 this.creator = data;
                 this.initials = this.creator.firstName.charAt(0).concat(this.creator.lastName.charAt(0));
               })}, 200);
+      },
+      editPost() {
+
+      },
+      deletePost() {
+        fetch("/api/posts/" + this.post.id, { method: 'delete' })
+        .then(response => response.text())
+        .then((response) => {
+            console.log(response);
+            window.alert(response);
+            document.location.replace("/");
+        })
+        .catch(err => console.log(err));
       }
     },
     mounted() {
