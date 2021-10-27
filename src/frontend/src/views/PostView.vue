@@ -21,7 +21,7 @@
           Published on 20.09.2021, 10:31
           </v-chip>
           <v-btn
-          v-if="$keycloak.idTokenParsed.roles.includes('admin')"
+          v-if="isAdmin()"
           x-small
           text
           @click="editPost()"
@@ -29,7 +29,7 @@
           Edit post
           </v-btn>
           <v-btn
-          v-if="$keycloak.idTokenParsed.roles.includes('admin')"
+          v-if="isAdmin()"
           x-small
           text
           color="red"
@@ -117,9 +117,20 @@ export default {
             document.location.replace("/");
         })
         .catch(err => console.log(err));
+      },
+      isAdmin() {
+        try {
+          if(this.$keycloak.idTokenParsed.roles.includes('admin')) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch(e) {
+          return false;
+        }
       }
     },
-    mounted() {
+    created() {
      this.fetchPost();
      this.fetchUser();     
     }
