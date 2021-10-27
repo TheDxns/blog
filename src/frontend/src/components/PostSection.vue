@@ -46,7 +46,7 @@ import Post from '@/components/Post.vue'
     components: {
       Post
     },
-    mounted() {
+    created() {
       this.getPosts();
       
     },

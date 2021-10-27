@@ -72,7 +72,7 @@ export default {
       this.$emit('setfiltercategory', category)
     },
   }, 
-  mounted() {
+  created() {
     this.fetchUser();
   }
 }
