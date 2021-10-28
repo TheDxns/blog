@@ -63,6 +63,14 @@ const routes = [
       title: "Not authorized"
     },
     component: () => import('../views/Unauthorized.vue')
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    meta: {
+      title: "Search for posts"
+    },
+    component: () => import('../views/Search.vue')
   }
 ]
 
