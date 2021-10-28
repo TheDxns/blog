@@ -20,32 +20,14 @@
         <v-btn href="/about" text>
           <span class="mr-2 font-weight-light">About</span>
         </v-btn>
-        <template>
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  text
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <span class="mr-2 font-weight-light">Categories</span>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(category, index) in categories"
-                  :key="index"
-                >
-                  <v-list-item-title>{{ category.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-        </template>
+        <v-btn href="/search" text>
+          <span class="mr-2 font-weight-light">Search</span>
+        </v-btn>
         <v-btn href="/contact" text>
           <span class="mr-2 font-weight-light">Contact</span>
         </v-btn>
         <v-btn href="https://github.com/TheDxns/blog" target="_blank" text>
-          <span class="mr-2 font-weight-light">Github repo</span>
+          <span class="mr-2 font-weight-light">Source code</span>
         </v-btn>
       </div>
       </v-col>

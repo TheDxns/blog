@@ -1,6 +1,5 @@
 <template>
   <v-container>
-        <h1 class="mt-6 ml-16 font-weight-light">Latest posts:</h1>
         <v-row v-if="setFilter" class="ml-16 mt-10">
             <p>Sorting by {{sortingType}}: <b>{{filter}}</b></p><v-btn small class="ml-5 red--text" text v-on:click="removeFilter()">Reset</v-btn> 
         </v-row>
@@ -46,9 +45,8 @@ import Post from '@/components/Post.vue'
     components: {
       Post
     },
-    mounted() {
+    created() {
       this.getPosts();
-      
     },
     computed: {
             totalPages: function() {

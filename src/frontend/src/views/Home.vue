@@ -3,6 +3,9 @@
     <v-col cols=1>
       </v-col>
       <v-col cols=7>
+          <div class="ml-12">
+            <h1 class="mt-6 ml-16 font-weight-light">Latest posts:</h1>
+          </div>
           <PostSection/>
       </v-col>
       <v-col cols=3>
