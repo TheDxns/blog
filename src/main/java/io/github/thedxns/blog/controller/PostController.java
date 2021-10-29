@@ -36,6 +36,11 @@ public class PostController {
         return ResponseEntity.ok(postService.getAllFeatured());
     }
 
+    @GetMapping("search/{keyword}")
+    public ResponseEntity<?> getPostById(@PathVariable String keyword) {
+        return ResponseEntity.ok(postService.getPostByKeyword(keyword));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable int id) {
         return ResponseEntity.ok(postService.getPost(id));
