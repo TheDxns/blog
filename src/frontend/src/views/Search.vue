@@ -16,7 +16,7 @@
                         <v-text-field class="ml-16"
                             label="Keyword"
                             type="text"
-                            v-model="key"
+                            v-model="searchKey"
                         >
                         <template v-slot:append-outer>
                         <v-btn small class="ml-5" text v-on:click="searchForPosts()">Search</v-btn> 
@@ -25,7 +25,7 @@
                     </v-col>
               </v-row>
           <v-row v-if="startedSearch">
-                  <PostSection />
+                  <PostSection :key="sectionKey" :searchKey="searchKey"/>
           </v-row>
         </v-col>
 </v-row>
@@ -40,9 +40,10 @@ export default {
   name: 'Search',
    data() {
       return {
-        key: '',
+        searchKey: '',
         startedSearch: false,  
-        posts: []
+        posts: [],
+        sectionKey: 0
       }
     },
     components: {
@@ -50,6 +51,7 @@ export default {
     },
     methods: {
         searchForPosts() {
+            this.sectionKey += 1;
             this.startedSearch = true;
         }
     }

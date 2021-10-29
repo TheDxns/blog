@@ -30,6 +30,7 @@ import Post from '@/components/Post.vue'
 
   export default {
     name: 'PostSection',
+    props: ['searchKey'],
     data() {
       return {
         currentPage: 1,
@@ -59,25 +60,34 @@ import Post from '@/components/Post.vue'
         },
         methods: {
         getPosts() {
-          if (this.setFilter == false) {
-            fetch("/api/posts?sort=id,desc")
-                .then((response) => response.json())
-                .then((data) => {
-                  this.posts = data;
-                })
-          } else if (this.sortingType === "user") {
-            fetch("/api/posts/user/" + this.filterUsername)
-                .then((response) => response.json())
-                .then((data) => {
-                  this.posts = data;
-                })
+          if (this.searchKey == undefined || this.searchKey === '') {
+              if (this.setFilter == false) {
+              fetch("/api/posts?sort=id,desc")
+                  .then((response) => response.json())
+                  .then((data) => {
+                    this.posts = data;
+                  })
+            } else if (this.sortingType === "user") {
+              fetch("/api/posts/user/" + this.filterUsername)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    this.posts = data;
+                  })
+            } else {
+              fetch("/api/posts/category/" + this.filter)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    this.posts = data;
+                  })
+            }
           } else {
-            fetch("/api/posts/category/" + this.filter)
-                .then((response) => response.json())
-                .then((data) => {
-                  this.posts = data;
-                })
+            fetch("/api/posts/search/" + this.searchKey)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    this.posts = data;
+                  })
           }
+          
         },
         filterPostsByUser(name, surname, username) {
           this.sortingType = "user";
