@@ -5,7 +5,9 @@ import io.github.thedxns.blog.model.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PostService {
@@ -29,6 +31,15 @@ public class PostService {
         return postRepository.findByFeatured(true);
     }
 
+    public List<Post> getPostByKeyword(String keyword) {
+        List<Post> posts = postRepository.findByTitleContainingIgnoreCase(keyword);
+        posts.addAll(postRepository.findByContentContainingIgnoreCase(keyword));
+        Set<Post> set = new LinkedHashSet<>(posts);
+        posts.clear();
+        posts.addAll(set);
+        return posts;
+    }
+    
     public Post getPost(int id) {
         return postRepository.findById(id).get();
     }
