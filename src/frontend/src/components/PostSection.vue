@@ -9,8 +9,8 @@
           flat
           tile
           >
-            <Post v-for="post in paginate" :key="post.content" v-bind:post="post" @setfilteruser="filterPostsByUser"
-          @setfiltercategory="filterPostsByCategory" />
+            <Post v-for="post in paginate" :key="post.content" v-bind:post="post" @setfilteruser="updateFilterByUser"
+          @setfiltercategory="updateFilterByCategory" />
           </v-card>
         </ul>
         <div class="text-center">
@@ -61,42 +61,42 @@ import Post from '@/components/Post.vue'
         methods: {
         getPosts() {
           if (this.searchKey == undefined || this.searchKey === '') {
-              if (this.setFilter == false) {
-              fetch("/api/posts?sort=id,desc")
-                  .then((response) => response.json())
-                  .then((data) => {
-                    this.posts = data;
-                  })
-            } else if (this.sortingType === "user") {
-              fetch("/api/posts/user/" + this.filterUsername)
-                  .then((response) => response.json())
-                  .then((data) => {
-                    this.posts = data;
-                  })
-            } else {
-              fetch("/api/posts/category/" + this.filter)
-                  .then((response) => response.json())
-                  .then((data) => {
-                    this.posts = data;
-                  })
-            }
+            fetch("/api/posts?sort=id,desc")
+              .then((response) => response.json())
+              .then((data) => {
+                if(this.setFilter == false) {
+                  this.posts = data;
+                } else {
+                  this.posts = data.filter(this.filterPosts);
+                }
+              })
           } else {
             fetch("/api/posts/search/" + this.searchKey)
-                  .then((response) => response.json())
-                  .then((data) => {
-                    this.posts = data;
-                  })
-          }
-          
+              .then((response) => response.json())
+              .then((data) => {
+                if (this.setFilter == false) {
+                  this.posts = data;
+                } else {
+                  this.posts = data.filter(this.filterPosts);
+                }
+              })
+            }
         },
-        filterPostsByUser(name, surname, username) {
+        filterPosts(posts) {
+          if (this.sortingType === "user") {
+            return posts.creatorUsername == this.filterUsername;
+          } else {
+            return posts.category == this.filter;
+          }
+        },
+        updateFilterByUser(name, surname, username) {
           this.sortingType = "user";
           this.filter = name + " " + surname;
           this.filterUsername = username;
           this.setFilter = true;
           this.getPosts();
         },
-        filterPostsByCategory(category) {
+        updateFilterByCategory(category) {
           this.sortingType = "category";
           this.filter = category;
           this.setFilter = true;
