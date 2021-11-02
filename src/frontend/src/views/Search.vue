@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row @keyup.enter="searchForPosts">
       <v-col>
             <v-row class="ml-16">
               <v-row class="ml-16">
