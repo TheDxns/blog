@@ -30,7 +30,7 @@ const routes = [
     }
   },
   {
-    path: '/new-post',
+    path: '/posts/publish',
     name: 'NewPost',
     component: () => import(/* webpackChunkName: "new-post" */ '../views/NewPost.vue'),
     meta: {
@@ -39,19 +39,19 @@ const routes = [
     }
   },
   {
-    path: '/posts/*',
+    path: '/posts/show/*',
     name: 'PostView',
 
-    component: () => import(/* webpackChunkName: "new-post" */ '../views/PostView.vue'),
+    component: () => import(/* webpackChunkName: "show-post" */ '../views/PostView.vue'),
     meta: {
       title: "Show post"
     }
   },
   {
-    path: '/edit/posts/*',
+    path: '/posts/edit/*',
     name: 'PostEdit',
 
-    component: () => import(/* webpackChunkName: "new-post" */ '../views/PostEdit.vue'),
+    component: () => import(/* webpackChunkName: "edit-post" */ '../views/PostEdit.vue'),
     meta: {
       title: "Edit post"
     }
@@ -71,6 +71,14 @@ const routes = [
       title: "Search for posts"
     },
     component: () => import('../views/Search.vue')
+  },
+  {
+    path: '/posts/manage',
+    name: 'PostManagement',
+    meta: {
+      title: "Post management"
+    },
+    component: () => import('../views/PostList.vue')
   }
 ]
 
