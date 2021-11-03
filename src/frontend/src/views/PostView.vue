@@ -106,7 +106,7 @@ export default {
               })}, 200);
       },
       editPost() {
-        document.location.replace('/edit/posts/' + this.post.id);
+        document.location.replace('/posts/edit/' + this.post.id);
       },
       deletePost() {
         fetch("/api/posts/" + this.post.id, { method: 'delete' })

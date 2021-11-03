@@ -54,7 +54,7 @@
               </p>
               <v-divider class="my-3"></v-divider>
               <v-btn
-                href="/new-post"
+                href="/posts/publish"
                 depressed
                 rounded
                 text
@@ -64,7 +64,7 @@
               <v-divider class="my-3"></v-divider>
               <div v-if="$keycloak.idTokenParsed.roles.includes('admin')">
                 <v-btn 
-                  href=""
+                  href="/posts/manage"
                   target="_blank"
                   depressed
                   rounded
