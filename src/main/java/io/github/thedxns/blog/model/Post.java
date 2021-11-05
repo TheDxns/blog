@@ -44,6 +44,22 @@ public class Post
     public Post() {
     }
 
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
     public int getId() {
         return id;
     }
@@ -119,11 +135,12 @@ public class Post
 
     @PrePersist
     void prePersist() {
-        createdOn = LocalDateTime.now();
+        this.setCreatedOn(LocalDateTime.now());
     }
 
     @PreUpdate
     void preUpdate() {
-        updatedOn = LocalDateTime.now();
+        this.setUpdatedOn(LocalDateTime.now());
     }
 }
+
