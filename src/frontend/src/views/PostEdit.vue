@@ -88,7 +88,7 @@ export default {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({id:this.post.id, title:this.post.title, content:this.post.content, category:this.post.category, creatorId: this.post.creatorId, creatorUsername: this.post.creatorUsername, featured: this.postIsFeatured})
+        body:JSON.stringify({id:this.post.id, title:this.post.title, content:this.post.content, category:this.post.category, creatorId: this.post.creatorId, creatorUsername: this.post.creatorUsername, featured: this.postIsFeatured, createdOn: this.post.createdOn})
       }).then(response => response.text())
         .then((response) => {
             console.log(response);
