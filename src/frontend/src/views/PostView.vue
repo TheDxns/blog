@@ -13,18 +13,13 @@
             </v-avatar>
             {{ creator.firstName }} {{ creator.lastName}}
           </v-chip>
-          <v-chip
-          label
-          class=""
-          color="white"
-          >
-          Published on 20.09.2021, 10:31
-          </v-chip>
+          <span style="font-size:13px;">Published on {{post.createdOn | formatDateShort}}</span><span v-if="post.updatedOn != null" style="font-size:13px; color: grey;"> (Updated: {{post.updatedOn | formatDateLong}})</span>
           <v-btn
           v-if="isAdmin()"
           x-small
           text
           @click="editPost()"
+          class="ml-3"
           >
           Edit post
           </v-btn>
@@ -133,6 +128,24 @@ export default {
     created() {
      this.fetchPost();
      this.fetchUser();     
+    },
+    filters: {
+      formatDateShort: function(date) {
+        let newDate = new Date(date);
+        return newDate.toLocaleDateString("en", {
+          year: "numeric",
+          month: "long",
+          day: "numeric" });
+      },
+      formatDateLong: function(date) {
+        let newDate = new Date(date);
+        return newDate.toLocaleDateString("en", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric" });
+      }
     }
   }
 </script>
