@@ -25,8 +25,9 @@
           color="white"
           @click="setFilterCategory(post.category)"
           >
-                {{this.post.createdOn}} {{this.post.category}}
+                {{this.post.category}}
           </v-chip>
+          {{this.post.createdOn | formatDate}}
         <p class="text-h5 text--primary mt-auto mx-2">
           <a :href="'http://localhost:3000/posts/show/' + this.post.id" style="text-decoration:none;" class="black--text">{{ this.post.title }}</a>
         </p>
@@ -74,6 +75,15 @@ export default {
   }, 
   created() {
     this.fetchUser();
+  },
+  filters: {
+    formatDate: function(date) {
+      let newDate = new Date(date);
+      return newDate.toLocaleDateString("en", {
+        year: "numeric",
+        month: "long",
+        day: "numeric" });
+    }
   }
 }
 </script>
