@@ -29,10 +29,10 @@ public class MailController {
         mail.setRecipient("denis.lukasczyk@gmail.com");
         mail.setContent(mailBody.getContent());
         if(mailService.sendMail(mail)) {
-            return new ResponseEntity<String>("The message was sent.", HttpStatus.OK);
+            return ResponseEntity.ok().build();
         }
         else {
-            return new ResponseEntity<String>("The message could not be sent. Please try again.", HttpStatus.EXPECTATION_FAILED);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
