@@ -4,7 +4,6 @@ import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -43,7 +42,11 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable int id) {
-        return ResponseEntity.ok(postService.getPost(id));
+        if(!postService.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(postService.getPost(id));
+        }
     }
 
     @GetMapping("/user/{username}")
@@ -58,19 +61,23 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<?> savePost(@Valid @RequestBody Post post) {
-        if (postService.savePost(post)) {
-            return new ResponseEntity<String>("The post has been published.", HttpStatus.OK);
+        if(postService.savePost(post)) {
+            return ResponseEntity.ok().build();
         } else {
-            return new ResponseEntity<String>("The post has not been published. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePost(@PathVariable int id) {
-        if(postService.deletePost(id)) {
-            return new ResponseEntity<String>("The post has been deleted.", HttpStatus.OK);
+        if(!postService.existsById(id)) {
+            return ResponseEntity.notFound().build();
         } else {
-            return new ResponseEntity<String>("The post was not deleted. Try again.", HttpStatus.INTERNAL_SERVER_ERROR);
+            if(postService.deletePost(id)) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().build();
+            }
         }
     }
 
@@ -79,8 +86,11 @@ public class PostController {
         if(!postService.existsById(id)) {
             return ResponseEntity.notFound().build();
         } else {
-            postService.updatePost(id, post);
-            return ResponseEntity.noContent().build();
+            if(postService.updatePost(id, post)) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.internalServerError().build(); 
+            }
         }
     }
 }
