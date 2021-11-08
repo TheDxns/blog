@@ -19,7 +19,7 @@
                 </v-row>
                 <v-row v-for="post in posts" :key="post.content" v-bind:post="post">
                     <v-col class="ml-16">
-                        10.20.2021
+                        {{post.createdOn | formatDateLong}}
                     </v-col>
                     <v-col>
                         {{post.creatorUsername}}
@@ -80,6 +80,17 @@ export default {
             })
             .catch(err => console.log(err));
         }
+    },
+    filters: {
+      formatDateLong: function(date) {
+        let newDate = new Date(date);
+        return newDate.toLocaleDateString("en", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric" });
+      }
     }
 }
 </script>
