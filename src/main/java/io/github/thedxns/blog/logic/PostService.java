@@ -74,12 +74,17 @@ public class PostService {
     public boolean updatePost(int id, Post post) {
         post.setId(id);
         post.updateFrom(post);
-        if (post.getContent().length() > 2000) {
-            post.setSneakPeak(post.getContent().substring(0, 2000) + "...");
+        if (post.getContent().length() > 990) {
+            post.setSneakPeak(post.getContent().substring(0, 990) + "...");
         } else {
             post.setSneakPeak(post.getContent());
         }
         postRepository.save(post);
+        return true;
+    }
+
+    public boolean deleteAllByUser(String username) {
+        postRepository.deleteByCreatorUsername(username);
         return true;
     }
 }
