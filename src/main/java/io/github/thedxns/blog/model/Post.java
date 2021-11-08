@@ -44,6 +44,18 @@ public class Post
     public Post() {
     }
 
+    public Post(Post source) {
+        title = source.title;
+        content = source.content;
+        sneakPeak = source.sneakPeak;
+        category = source.category;
+        createdOn = source.createdOn;
+        updatedOn = source.updatedOn;
+        creatorId = source.creatorId;
+        creatorUsername = source.creatorUsername;
+        featured = source.featured;
+    }
+
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
@@ -125,9 +137,12 @@ public class Post
     }
 
     public void updateFrom(final Post source) {
+        title = source.title;
         content = source.content;
         sneakPeak = source.sneakPeak;
         category = source.category;
+        createdOn = source.createdOn;
+        updatedOn = source.updatedOn;
         creatorId = source.creatorId;
         creatorUsername = source.creatorUsername;
         featured = source.featured;
