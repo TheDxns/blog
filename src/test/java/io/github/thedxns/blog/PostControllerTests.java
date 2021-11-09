@@ -1,5 +1,6 @@
 package io.github.thedxns.blog;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -40,7 +41,7 @@ public class PostControllerTests {
         PostService mockPostService = mock(PostService.class);
         when(mockPostService.existsById(1)).thenReturn(false);
         PostController testPostController = new PostController(mockPostService);
-        Assertions.assertEquals(ResponseEntity.notFound().build(), testPostController.updatePost(1, new Post()));
+        Assertions.assertEquals(ResponseEntity.notFound().build(), testPostController.updatePost(1, any(Post.class)));
     }
 
     @Test
@@ -60,7 +61,7 @@ public class PostControllerTests {
         when(mockPostService.existsById(1)).thenReturn(true);
         when(mockPostService.updatePost(1, new Post())).thenReturn(false);
         PostController testPostController = new PostController(mockPostService);
-        Assertions.assertEquals(ResponseEntity.internalServerError().build(), testPostController.updatePost(1, new Post()));
+        Assertions.assertEquals(ResponseEntity.internalServerError().build(), testPostController.updatePost(1, any(Post.class)));
     }
 
     @Test
@@ -80,6 +81,6 @@ public class PostControllerTests {
         when(mockPostService.existsById(1)).thenReturn(true);
         when(mockPostService.updatePost(1, new Post())).thenReturn(true);
         PostController testPostController = new PostController(mockPostService);
-        Assertions.assertEquals(ResponseEntity.internalServerError().build(), testPostController.updatePost(1, new Post()));
+        Assertions.assertEquals(ResponseEntity.internalServerError().build(), testPostController.updatePost(1, any(Post.class)));
     }
 }
