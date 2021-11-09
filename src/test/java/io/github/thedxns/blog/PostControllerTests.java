@@ -6,10 +6,9 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-
 import io.github.thedxns.blog.controller.PostController;
 import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Post;
@@ -17,7 +16,7 @@ import io.github.thedxns.blog.model.Post;
 @SpringBootTest
 public class PostControllerTests {
     
-    @Autowired
+    @Mock
 	private PostController postController;
 
 	@Test
