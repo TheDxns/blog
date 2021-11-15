@@ -2,7 +2,7 @@
 A personal blog created with use of Vue.js and Vuetify for the frontend and Spring Boot on the server side.
 
 
-# What are the main features?
+# Main features
 - account registration & logon (via integration with Keycloak)
 - publishing posts
 - commenting on the posts (via integration with Disqus)
