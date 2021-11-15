@@ -78,7 +78,6 @@ export default {
       }).then(response => response.text())
         .then((response) => {
             console.log(response);
-            window.alert(response);
             document.location.replace("/");
         })
         .catch(err => console.log(err));

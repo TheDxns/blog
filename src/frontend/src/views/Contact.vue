@@ -120,7 +120,6 @@
             }).then(response => response.text())
               .then((response) => {
                   console.log(response);
-                  window.alert(response);
                   this.step = 2;
               }).catch(err => console.log(err));
           }
