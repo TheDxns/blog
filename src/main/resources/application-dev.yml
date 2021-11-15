@@ -3,10 +3,13 @@ spring:
     enabled: true
     path: /console
     settings.web-allow-others: true
-  datasource.url: jdbc:h2:file:/D:/Workspace/blog/blog-db-dev3
+  datasource.url: jdbc:h2:file:/D:/Workspace/blog/test-db
   
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+
+
+sendgrid.key: none
