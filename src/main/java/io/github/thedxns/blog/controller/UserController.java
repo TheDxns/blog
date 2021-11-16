@@ -12,10 +12,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
 	private String keycloakServerUrl;
@@ -26,7 +28,7 @@ public class UserController {
         this.keycloakRealm = keycloakRealm;
 	}
 
-	@GetMapping("/api/users")
+	@GetMapping
 	public Object getAllUsers() {
 		Keycloak keycloak = KeycloakBuilder.builder()
             .serverUrl(keycloakServerUrl)
@@ -47,7 +49,7 @@ public class UserController {
         return restTemplate.exchange(URI.create(keycloakServerUrl + "/admin/realms/Blog/users"), HttpMethod.GET, request, List.class).getBody();			
 	}
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/{id}")
 	public Object getUser(@PathVariable String id) {
 	Keycloak keycloak = KeycloakBuilder.builder()
         .serverUrl("http://localhost:8180/auth")

@@ -4,7 +4,6 @@
       <v-col cols="10" class="mx-16">
           <h1 class="mt-6 mx-16 font-weight-light">{{ post.title }}</h1>
           <v-chip
-          link
           class="ma-2 ml-16"
           color="white"
           >

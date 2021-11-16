@@ -97,7 +97,7 @@
     computed: {
       currentTitle () {
         switch (this.step) {
-          case 1: return 'Contact form'
+          case 1: return ''
           default: return 'The message was sent'
         }
       },
