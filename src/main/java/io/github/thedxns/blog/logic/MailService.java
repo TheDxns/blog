@@ -1,9 +1,7 @@
 package io.github.thedxns.blog.logic;
 
 import org.springframework.stereotype.Service;
-
 import io.github.thedxns.blog.pojos.MailBody;
-
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
@@ -12,7 +10,6 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 

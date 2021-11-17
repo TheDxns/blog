@@ -10,9 +10,9 @@
     </parent>
     <groupId>io.github.thedxns</groupId>
     <artifactId>blog</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>blog</name>
-    <description>Demo project for Spring Boot</description>
+    <version>0.1.0</version>
+    <name>A blog by TheDxns</name>
+    <description>A personal blog created with use of Vue.js and Vuetify for the frontend and Spring Boot on the server side.</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -83,6 +83,11 @@
             <artifactId>sendgrid-java</artifactId>
             <version>4.7.5</version>
         </dependency>
+        <dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
