@@ -11,8 +11,8 @@
     <groupId>io.github.thedxns</groupId>
     <artifactId>blog</artifactId>
     <version>0.1.0</version>
-    <name>blog</name>
-    <description>A blog by TheDxns</description>
+    <name>A blog by TheDxns</name>
+    <description>A personal blog created with use of Vue.js and Vuetify for the frontend and Spring Boot on the server side.</description>
     <properties>
         <java.version>11</java.version>
     </properties>
