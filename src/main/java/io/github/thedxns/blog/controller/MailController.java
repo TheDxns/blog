@@ -34,4 +34,18 @@ public class MailController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping("/subscribers")
+    public ResponseEntity<?> contactSubscribers() throws Exception {
+        MailBody mail = new MailBody();
+        mail.setTitle("A new post was published on A blog by TheDxns");
+        mail.setRecipient("denis.lukasczyk@gmail.com");
+        mail.setContent("Hi, we would like you to know that on A blog by TheDxns there was a new post published.");
+        if(mailService.notifySubscribers(mail)) {
+            return ResponseEntity.ok().build();
+        }
+        else {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
