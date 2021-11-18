@@ -1,7 +1,10 @@
 package io.github.thedxns.blog.controller;
 
+import io.github.thedxns.blog.logic.MailService;
 import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Post;
+import io.github.thedxns.blog.pojos.MailBody;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,12 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final MailService mailService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService, MailService mailService) {
         this.postService = postService;
+        this.mailService = mailService;
     }
 
     @GetMapping(params = {"!sort", "!page", "!size"})
@@ -60,9 +65,19 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<?> savePost(@Valid @RequestBody Post post) {
-        if(postService.savePost(post)) {
-            return ResponseEntity.ok().build();
+    public ResponseEntity<?> savePost(@Valid @RequestBody Post post) throws Exception {
+        if (postService.savePost(post)) {
+            MailBody mail = new MailBody();
+            mail.setTitle("A new post was published on A blog by TheDxns");
+            mail.setRecipient("denis.lukasczyk@gmail.com");
+            mail.setContent("Hi, we would like you to know that on A blog by TheDxns there was a new post published with the title: " + "'" + post.getTitle() 
+            + "<br/><br />Visit the blog clicking the link below:<br /><a href=" 
+            + "'http:///localhost:3000'" + ">A blog by TheDxns</a>");
+            if(mailService.contactSubscribers(mail)) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().build();
+            }    
         } else {
             return ResponseEntity.internalServerError().build();
         }
