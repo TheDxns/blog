@@ -13,6 +13,7 @@ import com.sendgrid.helpers.mail.objects.Personalization;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,7 +28,7 @@ public class MailService {
     }
 
     public boolean sendMail(MailBody mailBody) throws Exception {
-        Email from = new Email("denis.lukasczyk@gmail.com");
+        Email from = new Email("ablogbythedxns@gmail.com");
         String subject = mailBody.getSubject();
         Email to = new Email(mailBody.getRecipient());
         Content content = new Content("text/plain", mailBody.getContent());
@@ -48,11 +49,12 @@ public class MailService {
         }
     }
 
-    public boolean notifySubscribers(MailBody mailBody) throws Exception {
+    @Async
+    public boolean contactSubscribers(MailBody mailBody) throws Exception {
       SendGrid sg = new SendGrid(apiKey);
-      Email from = new Email("denis.lukasczyk@gmail.com");
+      Email from = new Email("ablogbythedxns@gmail.com");
       String subject = mailBody.getSubject();
-      Content content = new Content("text/plain", mailBody.getContent());
+      Content content = new Content("text/html", mailBody.getContent());
       Personalization personalization = new Personalization();
       Request getRequest = new Request();
       getRequest.setMethod(Method.GET);
@@ -74,9 +76,9 @@ public class MailService {
       JSONObject responseBody = new JSONObject(getResponse.getString("body"));
       JSONArray recipientsData = new JSONArray(responseBody.getJSONArray("result").toString());
       for (int i=0; i<recipientsData.length(); i++) {
-        personalization.addTo(new Email(recipientsData.getJSONObject(i).getString("email")));
+        personalization.addBcc(new Email(recipientsData.getJSONObject(i).getString("email")));
       }
-      
+      personalization.addTo(new Email("ablogbythedxns@gmail.com"));
       Mail mail = new Mail();
       mail.addPersonalization(personalization);
       mail.setFrom(from);
