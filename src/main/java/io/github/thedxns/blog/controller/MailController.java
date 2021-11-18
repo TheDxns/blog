@@ -41,7 +41,7 @@ public class MailController {
         mail.setTitle("A new post was published on A blog by TheDxns");
         mail.setRecipient("denis.lukasczyk@gmail.com");
         mail.setContent("Hi, we would like you to know that on A blog by TheDxns there was a new post published.");
-        if(mailService.notifySubscribers(mail)) {
+        if(mailService.contactSubscribers(mail)) {
             return ResponseEntity.ok().build();
         }
         else {
