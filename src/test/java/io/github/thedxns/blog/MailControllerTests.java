@@ -37,10 +37,28 @@ public class MailControllerTests {
 
     @Test
     @DisplayName("Send mail endpoint should return 500 if the mail not was sent")
-    public void sendMailWhenTheMailWasSentReturns500Response() throws Exception {
+    public void sendMailWhenTheMailWasNotSentReturns500Response() throws Exception {
         MailService mockMailService = mock(MailService.class);
         when(mockMailService.sendMail(any(MailBody.class))).thenReturn(false);
         MailController testMailController = new MailController(mockMailService);
         Assertions.assertEquals(ResponseEntity.internalServerError().build(), testMailController.contact(new MailBody()));
+    }
+
+    @Test
+    @DisplayName("Contact subscribers endpoint should return 200 if the mail was sent")
+    public void contactSubscribersWhenTheMailWasSentReturns200Response() throws Exception {
+        MailService mockMailService = mock(MailService.class);
+        when(mockMailService.contactSubscribers(any(MailBody.class))).thenReturn(true);
+        MailController testMailController = new MailController(mockMailService);
+        Assertions.assertEquals(ResponseEntity.ok().build(), testMailController.contactSubscribers());
+    }
+
+    @Test
+    @DisplayName("Contact subscribers endpoint should return 500 if the mail not was sent")
+    public void contactSubscribersWhenTheMailWasNotSentReturns500Response() throws Exception {
+        MailService mockMailService = mock(MailService.class);
+        when(mockMailService.contactSubscribers(any(MailBody.class))).thenReturn(false);
+        MailController testMailController = new MailController(mockMailService);
+        Assertions.assertEquals(ResponseEntity.internalServerError().build(), testMailController.contactSubscribers());
     }
 }
