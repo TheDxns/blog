@@ -45,7 +45,7 @@
   </v-form>
 </template>
 <script>
-import "vue-wysiwyg\\dist\\vueWysiwyg.css";
+import 'vue-wysiwyg/dist/vueWysiwyg.css';
 
 export default {
   name: 'PostForm',
@@ -56,7 +56,9 @@ export default {
       postCategory: '',
       postIsFeatured: false,
       categories: [
-        'Test',
+        'Tutorial',
+        'News',
+        'Thoughts',
         'Other'
       ]
     }
