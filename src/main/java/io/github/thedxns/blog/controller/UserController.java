@@ -52,7 +52,7 @@ public class UserController {
     @GetMapping("/{id}")
 	public Object getUser(@PathVariable String id) {
 	Keycloak keycloak = KeycloakBuilder.builder()
-        .serverUrl("http://localhost:8180/auth")
+        .serverUrl("http://localhost:8080/auth")
         .grantType(OAuth2Constants.PASSWORD)
         .realm("Blog")
         .clientId("blog-client")
