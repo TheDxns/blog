@@ -3,7 +3,7 @@
     <v-main>
       <v-row>
         <v-col>
-          <Navbar/>
+          <Navbar :keycloakData="keycloakData"/>
         </v-col>
       </v-row>
       <v-row>
@@ -27,6 +27,7 @@ import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
+  props: ['keycloakData'],
   components: {
     Navbar,
     Footer
