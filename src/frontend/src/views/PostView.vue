@@ -92,7 +92,7 @@ export default {
       },
       fetchUser() {
         setTimeout(() => {
-        fetch("http://localhost:3000/api/users/" + this.post.creatorId)
+        fetch("http://localhost:80/api/users/" + this.post.creatorId)
               .then((response) => response.json())
               .then((data) => {
                 this.creator = data;
