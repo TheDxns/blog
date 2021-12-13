@@ -48,9 +48,9 @@
               >
                 <span class="white--text text-h5">{{ initials }}</span>
               </v-avatar>
-              <h3 class="mt-2">{{ $keycloak.idTokenParsed.name }}</h3>
+              <h3 class="mt-2">{{ keycloakData.idTokenParsed.name }}</h3>
               <p class="text-caption mt-1">
-                {{ $keycloak.idTokenParsed.email }}
+                {{ keycloakData.idTokenParsed.email }}
               </p>
               <v-divider class="my-3"></v-divider>
               <v-btn
@@ -62,8 +62,7 @@
                 New post
               </v-btn>
               <v-divider class="my-3"></v-divider>
-              <div v-if="$keycloak.idTokenParsed.roles.includes('admin')">
-                <v-btn 
+              <v-btn
                   href="/posts/manage"
                   target="_blank"
                   depressed
@@ -71,21 +70,20 @@
                   text
                 >
                 Manage posts
-                </v-btn>
-                <v-divider class="my-3"></v-divider>
-                <v-btn
-                  href="http://localhost:8180/auth/realms/Blog/account/#/personal-info"
+              </v-btn>
+              <v-divider class="my-3"></v-divider>
+              <v-btn
+                  href="http://localhost:8080/auth/realms/Blog/account/#/personal-info"
                   target="_blank"
                   depressed
                   rounded
                   text
                 >
                   Edit Account
-                </v-btn>
+              </v-btn>
               <v-divider class="my-3"></v-divider>
-              </div>
               <v-btn
-                href="http://localhost:8180/auth/realms/Blog/account/#/security/signingin"
+                href="http://localhost:8080/auth/realms/Blog/account/#/security/signingin"
                 target="_blank"
                 depressed
                 rounded
@@ -95,8 +93,7 @@
               </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn
-                
-                @click="$keycloak.logoutFn"
+                @click="keycloakData.logout"
                 depressed
                 rounded
                 text
@@ -112,10 +109,11 @@
 <script>
   export default {
     name: "UserMenu",
+    props: ['keycloakData'],
      data() {
       return {
         dataLoading: false,
-        initials: this.$keycloak.idTokenParsed.given_name.charAt(0).concat(this.$keycloak.idTokenParsed.family_name.charAt(0))
+        initials: this.keycloakData.idTokenParsed.given_name.charAt(0).concat(this.keycloakData.idTokenParsed.family_name.charAt(0))
         }
     },
     methods: {

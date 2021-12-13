@@ -29,7 +29,7 @@
           </v-chip>
           {{this.post.createdOn | formatDate}}
         <p class="text-h5 text--primary mt-auto mx-2">
-          <a :href="'http://localhost:3000/posts/show/' + this.post.id" style="text-decoration:none;" class="black--text">{{ this.post.title }}</a>
+          <a :href="'http://localhost:80/posts/show/' + this.post.id" style="text-decoration:none;" class="black--text">{{ this.post.title }}</a>
         </p>
         <div class="text--primary mx-2 mt-auto" style="overflow-x:hidden; overflow-y:hidden;"  v-html=post.sneakPeak />
       </v-card-text>
@@ -37,7 +37,7 @@
         <v-btn
           text
           color="blue-grey accent-4"
-          :href="'http://localhost:3000/posts/show/' + this.post.id"
+          :href="'http://localhost:80/posts/show/' + this.post.id"
           class="mx-2"
           
         >
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     fetchUser() {
-      fetch("http://localhost:3000/api/users/" + this.post.creatorId)
+      fetch("http://localhost:80/api/users/" + this.post.creatorId)
           .then((response) => response.json())
           .then((data) => {
             this.user = data;

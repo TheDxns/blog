@@ -50,7 +50,7 @@ public class MailService {
     }
 
     @Async
-    public boolean contactSubscribers(MailBody mailBody) throws Exception {
+    public Boolean contactSubscribers(MailBody mailBody) throws Exception {
       SendGrid sg = new SendGrid(apiKey);
       Email from = new Email("ablogbythedxns@gmail.com");
       String subject = mailBody.getSubject();
@@ -62,14 +62,14 @@ public class MailService {
       getRequest.addQueryParam("page", "1");
       getRequest.addQueryParam("page_size", "1");
 
-      Response response = null;
+      Response response = new Response();
       try {
           response = sg.api(getRequest);
       } catch (IOException e) {
           e.printStackTrace();
       }
       if (response != null) {
-          System.out.println(response.getBody());
+          System.out.println("zero" + response.getBody());
       }
 
       JSONObject getResponse = new JSONObject(response);
@@ -90,9 +90,9 @@ public class MailService {
         postRequest.setEndpoint("mail/send");
         postRequest.setBody(mail.build());
         response = sg.api(postRequest);
-        System.out.println(response.getStatusCode());
-        System.out.println(response.getBody());
-        System.out.println(response.getHeaders());
+        System.out.println(response.getStatusCode() + "one");
+        System.out.println(response.getBody() +"two");
+        System.out.println(response.getHeaders() + "three");
         return true;
       } catch (IOException ex) {
         throw ex;

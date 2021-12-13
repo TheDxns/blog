@@ -2,15 +2,15 @@ spring:
   main:
     banner-mode: off
   profiles:
-    active: dev
-  jpa:
-    hibernate:
-      ddl-auto: update
+    active: prod
       
 keycloak:
   realm: 'Blog'
-  auth-server-url: 'http://localhost:8180/auth'
+  auth-server-url: 'http://localhost:8080/auth'
   resource: 'blog-api'
   ssl-required: none
   use-resource-role-mappings: true
   bearer-only: true
+
+server:
+  port : 9000

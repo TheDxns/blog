@@ -4,7 +4,6 @@ import io.github.thedxns.blog.logic.MailService;
 import io.github.thedxns.blog.logic.PostService;
 import io.github.thedxns.blog.model.Post;
 import io.github.thedxns.blog.pojos.MailBody;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

@@ -34,20 +34,18 @@
       <v-spacer></v-spacer>
       <v-col
       cols="2">
-      <div v-if="$keycloak.ready">
-        <div v-if="$keycloak.authenticated">
-          <UserMenu />
+        <div v-if="keycloakData.authenticated">
+          <UserMenu :keycloakData="keycloakData"/>
         </div>
         <div v-else>
           <v-btn
-            @click="$keycloak.login"
+            @click="keycloakData.login"
             class="mt-10 ml-16"
             text
           >
             <span class="ml-2 font-weight-light">Sign up/Log in</span>
             <v-icon>mdi-account</v-icon>
           </v-btn>
-          </div>
         </div>
       </v-col>
     </v-row>
@@ -59,16 +57,9 @@ import UserMenu from '@/components/UserMenu.vue'
 
 export default {
   name: 'Navbar',
+  props: ['keycloakData'],
   components: {
     UserMenu
-  },
-  data: () => ({
-      categories: [
-        { title: 'Test' },
-        { title: 'Other' },
-        { title: 'Lorem Ipsum' },
-        { title: 'Web dev' },
-      ],
-    }),
   }
+}
 </script>

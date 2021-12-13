@@ -1,3 +1,6 @@
 spring:
-  datasource:
-    url: jdbc:postgresql:://localhost:3306/prodbase
+    h2.console:
+        enabled: false
+    jpa:
+        database: POSTGRESQL
+        hibernate.ddl-auto: update

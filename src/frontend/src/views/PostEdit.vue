@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import "vue-wysiwyg\\dist\\vueWysiwyg.css";
+import 'vue-wysiwyg/dist/vueWysiwyg.css';
 
 export default {
   name: 'EditPost',
@@ -61,7 +61,9 @@ export default {
         post: null,
         postIsFeatured: false,
         categories: [
-        'Test',
+        'Tutorial',
+        'News',
+        'Thoughts',
         'Other'
       ]
       }

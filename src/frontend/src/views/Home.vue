@@ -20,7 +20,7 @@
             cols:12>
               <ul>
                 <li class="mb-3" v-for="post in posts" :key="post.title" v-bind:post="post" style="overflow:hidden;">
-                <a style="text-decoration:none;" class="blue-grey--text" :href="'http://localhost:3000/posts/' + post.id" >{{post.title}}</a>
+                <a style="text-decoration:none;" class="blue-grey--text" :href="'http://localhost:80/posts/show/' + post.id" >{{post.title}}</a>
                 </li>
               </ul>
             </v-col>
