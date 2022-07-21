@@ -3,12 +3,11 @@ A personal blog created with use of Vue.js and Vuetify for the frontend and Spri
 I have created this project to practice my skills and increase my knowledge on web application development.
 
 # Main features
-- account registration & logon (via integration with Keycloak)
+- administrator & redactor panel
 - publishing posts
-- commenting on the posts (via integration with Disqus)
+- commenting on the posts
 - contact page
 - post filtering
-- content management
 - subscription feature (via integration with SendGrid)
 
 # Development progress
