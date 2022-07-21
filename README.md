@@ -1,6 +1,6 @@
 # Overview 
 A personal blog created with use of Vue.js and Vuetify for the frontend and Spring Boot on the server side.<br />
-I have created this project to practice my skills and increase my knowledge.
+I have created this project to practice my skills and increase my knowledge on web application development.
 
 # Main features
 - account registration & logon (via integration with Keycloak)
@@ -12,4 +12,4 @@ I have created this project to practice my skills and increase my knowledge.
 - subscription feature (via integration with SendGrid)
 
 # Development progress
-The blog development is neraly finished. <br />
+The blog development is nearly finished. <br />
