@@ -1,6 +1,7 @@
-package io.github.thedxns.blog;
+package io.github.thedxns.blog.email;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -10,10 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-
-import io.github.thedxns.blog.controller.MailController;
-import io.github.thedxns.blog.logic.MailService;
-import io.github.thedxns.blog.pojos.MailBody;
 
 @SpringBootTest
 public class MailControllerTests {
@@ -48,7 +45,7 @@ public class MailControllerTests {
     @DisplayName("Contact subscribers endpoint should return 200 if the mail was sent")
     public void contactSubscribersWhenTheMailWasSentReturns200Response() throws Exception {
         MailService mockMailService = mock(MailService.class);
-        when(mockMailService.contactSubscribers(any(MailBody.class))).thenReturn(true);
+        when(mockMailService.contactSubscribers(anyString(), anyString(), anyString())).thenReturn(true);
         MailController testMailController = new MailController(mockMailService);
         Assertions.assertEquals(ResponseEntity.ok().build(), testMailController.contactSubscribers());
     }
@@ -57,7 +54,7 @@ public class MailControllerTests {
     @DisplayName("Contact subscribers endpoint should return 500 if the mail not was sent")
     public void contactSubscribersWhenTheMailWasNotSentReturns500Response() throws Exception {
         MailService mockMailService = mock(MailService.class);
-        when(mockMailService.contactSubscribers(any(MailBody.class))).thenReturn(false);
+        when(mockMailService.contactSubscribers(anyString(), anyString(), anyString())).thenReturn(false);
         MailController testMailController = new MailController(mockMailService);
         Assertions.assertEquals(ResponseEntity.internalServerError().build(), testMailController.contactSubscribers());
     }

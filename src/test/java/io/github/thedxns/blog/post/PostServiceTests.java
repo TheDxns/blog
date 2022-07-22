@@ -1,4 +1,4 @@
-package io.github.thedxns.blog;
+package io.github.thedxns.blog.post;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -9,9 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import io.github.thedxns.blog.logic.PostService;
-import io.github.thedxns.blog.model.Post;
-import io.github.thedxns.blog.model.repositories.PostRepository;
 
 @SpringBootTest
 public class PostServiceTests {

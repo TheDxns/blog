@@ -2,11 +2,10 @@
   <v-container>
     <v-row class="mx-16">
       <v-col cols="12" class="mx-16">
-        <h1 class="mt-6 ml-16 font-weight-light">Contact</h1>
         <v-row class="mt-7">
           <v-col class="ml-16">
-            <v-row class="ml-16">
-              <h2 class="ml-16 font-weight-light">Contact form:</h2>
+            <v-row class="ml-1">
+              <h2 class="mt-3 font-weight-light">Contact form:</h2>
             </v-row>
             <v-card
               class="mx-auto mt-10"
