@@ -1,4 +1,4 @@
-package io.github.thedxns.blog;
+package io.github.thedxns.blog.post;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-import io.github.thedxns.blog.controller.PostController;
-import io.github.thedxns.blog.logic.MailService;
-import io.github.thedxns.blog.logic.PostService;
-import io.github.thedxns.blog.model.Post;
+import io.github.thedxns.blog.email.MailService;
 
 @SpringBootTest
 public class PostControllerTests {
