@@ -36,7 +36,7 @@
             </v-icon>
           </v-btn>
         <v-card-text class="py-0  white--text text-center">
-        App by <strong>TheDxns</strong>
+        © {{ new Date().getFullYear() }} — <strong>TheDxns</strong>
         </v-card-text>
       </v-card-title>
 

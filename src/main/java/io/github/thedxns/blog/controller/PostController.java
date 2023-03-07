@@ -1,12 +1,13 @@
-package io.github.thedxns.blog.post;
+package io.github.thedxns.blog.controller;
 
-import io.github.thedxns.blog.email.MailBody;
-import io.github.thedxns.blog.email.MailService;
+import io.github.thedxns.blog.logic.MailService;
+import io.github.thedxns.blog.logic.PostService;
+import io.github.thedxns.blog.model.Post;
+import io.github.thedxns.blog.pojos.MailBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getPosts(final Pageable page) {
+    public ResponseEntity<?> getPosts(Pageable page) {
         return ResponseEntity.ok(postService.getAllPosts(page));
     }
 
@@ -39,12 +40,12 @@ public class PostController {
     }
 
     @GetMapping("search/{keyword}")
-    public ResponseEntity<?> getPostById(@PathVariable final String keyword) {
+    public ResponseEntity<?> getPostById(@PathVariable String keyword) {
         return ResponseEntity.ok(postService.getPostByKeyword(keyword));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPostById(@PathVariable final int id) {
+    public ResponseEntity<?> getPostById(@PathVariable int id) {
         if(!postService.existsById(id)) {
             return ResponseEntity.notFound().build();
         } else {
@@ -53,24 +54,25 @@ public class PostController {
     }
 
     @GetMapping("/user/{username}")
-    public ResponseEntity<List<Post>> getPostsByCreator(@PathVariable final String username) {
+    public ResponseEntity<List<Post>> getPostsByCreator(@PathVariable String username) {
         return ResponseEntity.ok(postService.getAllByCreator(username));
     }
 
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<Post>> getPostsByCategory(@PathVariable final String category) {
+    public ResponseEntity<List<Post>> getPostsByCategory(@PathVariable String category) {
         return ResponseEntity.ok(postService.getAllByCategory(category));
     }
 
     @PostMapping
-    public ResponseEntity<?> savePost(@Valid @RequestBody final Post post) throws Exception {
+    public ResponseEntity<?> savePost(@Valid @RequestBody Post post) throws Exception {
         if (postService.savePost(post)) {
-            final String title = "A new post was published on A blog by TheDxns";
-            final String recipient = "denis.lukasczyk@gmail.com";
-            final String content = "Hi, we would like you to know that on A blog by TheDxns there was a new post published with the title: " + "'" + post.getTitle()
+            MailBody mail = new MailBody();
+            mail.setTitle("A new post was published on A blog by TheDxns");
+            mail.setRecipient("denis.lukasczyk@gmail.com");
+            mail.setContent("Hi, we would like you to know that on A blog by TheDxns there was a new post published with the title: " + "'" + post.getTitle() 
             + "<br/><br />Visit the blog clicking the link below:<br /><a href=" 
-            + "'http:///localhost:3000'" + ">A blog by TheDxns</a>";
-            if (mailService.contactSubscribers(title, recipient, content)) {
+            + "'http:///localhost:3000'" + ">A blog by TheDxns</a>");
+            if(mailService.contactSubscribers(mail)) {
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.internalServerError().build();
@@ -82,10 +84,10 @@ public class PostController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePost(@PathVariable int id) {
-        if (!postService.existsById(id)) {
+        if(!postService.existsById(id)) {
             return ResponseEntity.notFound().build();
         } else {
-            if (postService.deletePost(id)) {
+            if(postService.deletePost(id)) {
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.internalServerError().build();
@@ -95,10 +97,10 @@ public class PostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updatePost(@PathVariable int id, @RequestBody @Valid Post post) {
-        if (!postService.existsById(id)) {
+        if(!postService.existsById(id)) {
             return ResponseEntity.notFound().build();
         } else {
-            if (postService.updatePost(id, post)) {
+            if(postService.updatePost(id, post)) {
                 return ResponseEntity.noContent().build();
             } else {
                 return ResponseEntity.internalServerError().build(); 

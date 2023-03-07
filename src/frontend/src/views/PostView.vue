@@ -47,14 +47,22 @@
       </v-col>
     </v-row>
     <v-row class="mx-16">
+      <v-col cols="12" class="mt-5">
+          <h3 class="mt-16">
+            <Disqus shortname='thedxnsblog' :pageConfig="pageConfig"/>
+          </h3>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { Disqus } from 'vue-disqus'
+
 export default {
   name: 'PostView',
   components: {
+    Disqus
   },
     data() {
       return {

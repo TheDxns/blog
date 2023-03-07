@@ -7,7 +7,7 @@
   class="mt-10">
       <v-text-field
           v-model="postTitle"
-          :counter="100"
+          :counter="30"
           label="Title"
           required
       ></v-text-field>

@@ -4,9 +4,9 @@
       <v-row justify="start">
         <v-col>
           <a href="/" style="text-decoration: none;">
-            <v-toolbar-title class="headline text-uppercase grey--text mt-14 px-5 text-h4">
-              <span class="font-weight-light">YOUR </span>
-              <span>WEB BLOG</span>
+            <v-toolbar-title class="headline text-uppercase grey--text mt-14 px-5">
+              <span class="font-weight-light">A Blog by </span>
+              <span>TheDxns</span>
             </v-toolbar-title>
             </a>
         </v-col>
@@ -25,6 +25,9 @@
         </v-btn>
         <v-btn href="/contact" text>
           <span class="mr-2 font-weight-light">Contact</span>
+        </v-btn>
+        <v-btn href="https://github.com/TheDxns/blog" target="_blank" text>
+          <span class="mr-2 font-weight-light">Source code</span>
         </v-btn>
       </div>
       </v-col>

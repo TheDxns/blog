@@ -1,10 +1,11 @@
-package io.github.thedxns.blog.post;
+package io.github.thedxns.blog.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+
 
 @Entity
 public class Post

@@ -1,4 +1,4 @@
-package io.github.thedxns.blog.email;
+package io.github.thedxns.blog.pojos;
 
 public class MailBody {
     private String recipient;
@@ -14,27 +14,27 @@ public class MailBody {
         this.content = content;
     }
 
-    String getRecipient() {
+    public String getRecipient() {
         return recipient;
     }
 
-    void setRecipient(String recipient) {
+    public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
 
-    String getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    void setTitle(String subject) {
+    public void setTitle(String subject) {
         this.subject = subject;
     }
 
-    String getContent() {
+    public String getContent() {
         return content;
     }
 
-    void setContent(String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 }

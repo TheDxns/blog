@@ -1,12 +1,13 @@
-package io.github.thedxns.blog.post;
+package io.github.thedxns.blog.logic;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
+import io.github.thedxns.blog.model.Post;
+import io.github.thedxns.blog.model.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class PostService {
@@ -18,40 +19,40 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    List<Post> getAllPosts() {
+    public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
 
-    List<Post> getAllPosts(Pageable page) {
+    public List<Post> getAllPosts(Pageable page) {
         return postRepository.findAll(page).getContent();
     }
 
-    List<Post> getAllFeatured() {
+    public List<Post> getAllFeatured() {
         return postRepository.findByFeatured(true);
     }
 
-    List<Post> getPostByKeyword(String keyword) {
-        final List<Post> posts = postRepository.findByTitleContainingIgnoreCase(keyword);
+    public List<Post> getPostByKeyword(String keyword) {
+        List<Post> posts = postRepository.findByTitleContainingIgnoreCase(keyword);
         posts.addAll(postRepository.findByContentContainingIgnoreCase(keyword));
-        final Set<Post> set = new LinkedHashSet<>(posts);
+        Set<Post> set = new LinkedHashSet<>(posts);
         posts.clear();
         posts.addAll(set);
         return posts;
     }
     
-    Post getPost(int id) {
+    public Post getPost(int id) {
         return postRepository.findById(id).get();
     }
 
-    List<Post> getAllByCreator(String username) {
+    public List<Post> getAllByCreator(String username) {
         return postRepository.findByCreatorUsername(username);
     }
 
-    List<Post> getAllByCategory(String category) {
+    public List<Post> getAllByCategory(String category) {
         return postRepository.findByCategory(category);
     }
 
-    boolean savePost(Post post) {
+    public boolean savePost(Post post) {
         if (post.getContent().length() > 990) {
             post.setSneakPeak(post.getContent().substring(0, 990) + "...");
         } else {
@@ -61,16 +62,16 @@ public class PostService {
         return true;
     }
 
-    boolean deletePost(int id) {
+    public boolean deletePost(int id) {
         postRepository.deleteById(id);
         return true;
     }
 
-    boolean existsById(int id) {
+    public boolean existsById(int id) {
         return postRepository.existsById(id);
     }
 
-    boolean updatePost(int id, Post post) {
+    public boolean updatePost(int id, Post post) {
         post.setId(id);
         post.updateFrom(post);
         if (post.getContent().length() > 990) {
@@ -79,6 +80,11 @@ public class PostService {
             post.setSneakPeak(post.getContent());
         }
         postRepository.save(post);
+        return true;
+    }
+
+    public boolean deleteAllByUser(String username) {
+        postRepository.deleteByCreatorUsername(username);
         return true;
     }
 }

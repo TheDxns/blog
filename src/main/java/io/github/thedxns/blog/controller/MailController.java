@@ -1,4 +1,4 @@
-package io.github.thedxns.blog.email;
+package io.github.thedxns.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.github.thedxns.blog.logic.MailService;
+import io.github.thedxns.blog.pojos.MailBody;
+
 
 @RestController
 @RequestMapping("/api/contact")
@@ -19,12 +22,12 @@ public class MailController {
     }
     
     @PostMapping
-    public ResponseEntity<?> contact(@RequestBody final MailBody mailBody) throws Exception {
-        final MailBody mail = new MailBody();
+    public ResponseEntity<?> contact(@RequestBody MailBody mailBody) throws Exception {
+        MailBody mail = new MailBody();
         mail.setTitle("New message from " + mailBody.getRecipient() + " (" + mailBody.getSubject() + ")");
         mail.setRecipient("denis.lukasczyk@gmail.com");
         mail.setContent(mailBody.getContent());
-        if (mailService.sendMail(mail)) {
+        if(mailService.sendMail(mail)) {
             return ResponseEntity.ok().build();
         }
         else {
@@ -34,11 +37,11 @@ public class MailController {
 
     @PostMapping("/subscribers")
     public ResponseEntity<?> contactSubscribers() throws Exception {
-        final String title = "A new post was published on A blog by TheDxns";
-        final String recipient = "denis.lukasczyk@gmail.com";
-        final String content = "Hi, we would like you to know that on A blog by TheDxns there " +
-                "was a new post published.";
-        if (mailService.contactSubscribers(title, recipient, content)) {
+        MailBody mail = new MailBody();
+        mail.setTitle("A new post was published on A blog by TheDxns");
+        mail.setRecipient("denis.lukasczyk@gmail.com");
+        mail.setContent("Hi, we would like you to know that on A blog by TheDxns there was a new post published.");
+        if(mailService.contactSubscribers(mail)) {
             return ResponseEntity.ok().build();
         }
         else {
